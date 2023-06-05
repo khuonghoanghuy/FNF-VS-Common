@@ -1,0 +1,166 @@
+{
+	"animations": [
+		{
+			"offsets": [
+				0,
+				0
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "idle",
+			"loop": false,
+			"name": "common_idle0"
+		},
+		{
+			"offsets": [
+				-22,
+				-12
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singLEFT",
+			"loop": false,
+			"name": "common_left0"
+		},
+		{
+			"offsets": [
+				40,
+				-50
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singDOWN",
+			"loop": false,
+			"name": "common_down0"
+		},
+		{
+			"offsets": [
+				48,
+				8
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singUP",
+			"loop": false,
+			"name": "common_up0"
+		},
+		{
+			"offsets": [
+				42,
+				-1
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singRIGHT",
+			"loop": false,
+			"name": "common_right_alt0"
+		},
+		{
+			"offsets": [
+				42,
+				-1
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singRIGHT-alt",
+			"loop": false,
+			"name": "common_right0"
+		},
+		{
+			"offsets": [
+				42,
+				-1
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singRIGHT-alt-2",
+			"loop": false,
+			"name": "common_right_alt_20"
+		},
+		{
+			"offsets": [
+				-22,
+				-12
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singLEFT-alt",
+			"loop": false,
+			"name": "common_left_alt0"
+		},
+		{
+			"offsets": [
+				-22,
+				-12
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singLEFT-alt-2",
+			"loop": false,
+			"name": "common_left_alt_20"
+		},
+		{
+			"offsets": [
+				40,
+				-50
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singDOWN-alt",
+			"loop": false,
+			"name": "common_down_alt0"
+		},
+		{
+			"offsets": [
+				40,
+				-50
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singDOWN-alt-2",
+			"loop": false,
+			"name": "common_down_alt_20"
+		},
+		{
+			"offsets": [
+				48,
+				8
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singUP-alt",
+			"loop": false,
+			"name": "common_up_alt0"
+		},
+		{
+			"offsets": [
+				48,
+				8
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singUP-alt-2",
+			"loop": false,
+			"name": "common_up_alt_20"
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/common-cooler",
+	"position": [
+		110,
+		350
+	],
+	"healthicon": "common-cooler",
+	"flip_x": false,
+	"healthbar_colors": [
+		0,
+		255,
+		0
+	],
+	"camera_position": [
+		0,
+		90
+	],
+	"sing_duration": 4,
+	"scale": 1
+}
