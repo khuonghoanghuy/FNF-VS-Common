@@ -599,9 +599,6 @@ class PlayState extends MusicBeatState
 				var bg:BGSprite = new BGSprite('common_week/stageback-2', -600, -200, 0.9, 0.9);
 				add(bg);
 
-				bg.shader = wiggleShit.shader;
-				wiggleShit.effectType = WiggleEffectType.FLAG;
-
 				colum = new BGSprite('common_week/colum', 0, 0, 0.9, 0.9);
 				colum.y = FlxG.height / 2 - colum.height / 2;
 				add(colum);
@@ -690,9 +687,6 @@ class PlayState extends MusicBeatState
 				BF_Y += 220;
 				GF_X += 180;
 				GF_Y += 300;
-
-			case 'common_stage' | 'common_stage_shd':
-				DAD_Y = 100;
 		}
 
 		gf = new Character(GF_X, GF_Y, gfVersion);
@@ -1836,8 +1830,6 @@ class PlayState extends MusicBeatState
 			colum.x = 0;
 			colum.velocity.x *= -1;
 		}
-
-		wiggleShit.update(Conductor.crochet / 5000);
 
 		#if !debug
 		perfectMode = false;
