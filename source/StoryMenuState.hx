@@ -25,50 +25,21 @@ class StoryMenuState extends MusicBeatState
 	// Not recommended, as people usually download your mod for, you know,
 	// playing just the modded week then delete it.
 	// defaults to True
-	public static var weekUnlocked:Array<Bool> = [
-		true,	//Tutorial
-		true,	//Week 1
-		true,	//Week 2
-		true,	//Week 3
-		true,	//Week 4
-		true,	//Week 5
-		true	//Week 6
+	public static var weekUnlocked:Array<Bool> = [true, // Tutorial
+		true, // Week 1
+		true, // Week 2
 	];
 
-	//It works like this:
+	// It works like this:
 	// ['Left character', 'Center character', 'Right character']
-	var weekCharacters:Array<Dynamic> = [
-		['dad', 'bf', 'gf'],
-		['dad', 'bf', 'gf'],
-		['spooky', 'bf', 'gf'],
-		['pico', 'bf', 'gf'],
-		['mom', 'bf', 'gf'],
-		['parents-christmas', 'bf', 'gf'],
-		['senpai', 'bf', 'gf']
-	];
+	var weekCharacters:Array<Dynamic> = [['dad', 'bf', 'gf'], ['dad', 'bf', 'gf']];
 
-	//The week's name, displayed on top-right
-	var weekNames:Array<String> = [
-		"",
-		"Daddy Dearest",
-		"Spooky Month",
-		"PICO",
-		"MOMMY MUST MURDER",
-		"RED SNOW",
-		"hating simulator ft. moawling"
-	];
+	// The week's name, displayed on top-right
+	var weekNames:Array<String> = ["", "VS Common Guy", "In Gray Stage"];
 
-	//Background asset name, the background files are stored on assets/preload/menubackgrounds/
-	var weekBackground:Array<String> = [
-		'stage',		
-		'stage',
-		'halloween',
-		'philly',
-		'limo',
-		'christmas',
-		'school'
-	];
-	
+	// Background asset name, the background files are stored on assets/preload/menubackgrounds/
+	var weekBackground:Array<String> = ['stage', 'stage'];
+
 	var scoreText:FlxText;
 
 	private static var curDifficulty:Int = 1;
@@ -176,9 +147,10 @@ class StoryMenuState extends MusicBeatState
 		sprDifficultyGroup = new FlxTypedGroup<FlxSprite>();
 		add(sprDifficultyGroup);
 
-		
-		for (i in 0...CoolUtil.difficultyStuff.length) {
-			var sprDifficulty:FlxSprite = new FlxSprite(leftArrow.x + 60, leftArrow.y).loadGraphic(Paths.image('menudifficulties/' + CoolUtil.difficultyStuff[i][0].toLowerCase()));
+		for (i in 0...CoolUtil.difficultyStuff.length)
+		{
+			var sprDifficulty:FlxSprite = new FlxSprite(leftArrow.x + 60,
+				leftArrow.y).loadGraphic(Paths.image('menudifficulties/' + CoolUtil.difficultyStuff[i][0].toLowerCase()));
 			sprDifficulty.x += (308 - sprDifficulty.width) / 2;
 			sprDifficulty.ID = i;
 			sprDifficulty.antialiasing = ClientPrefs.globalAntialiasing;
@@ -217,7 +189,8 @@ class StoryMenuState extends MusicBeatState
 		super.create();
 	}
 
-	override function closeSubState() {
+	override function closeSubState()
+	{
 		persistentUpdate = true;
 		changeWeek();
 		super.closeSubState();
@@ -227,7 +200,8 @@ class StoryMenuState extends MusicBeatState
 	{
 		// scoreText.setFormat('VCR OSD Mono', 32);
 		lerpScore = Math.floor(FlxMath.lerp(lerpScore, intendedScore, CoolUtil.boundTo(elapsed * 30, 0, 1)));
-		if(Math.abs(intendedScore - lerpScore) < 10) lerpScore = intendedScore;
+		if (Math.abs(intendedScore - lerpScore) < 10)
+			lerpScore = intendedScore;
 
 		scoreText.text = "WEEK SCORE:" + lerpScore;
 
@@ -273,7 +247,7 @@ class StoryMenuState extends MusicBeatState
 			{
 				selectWeek();
 			}
-			else if(controls.RESET)
+			else if (controls.RESET)
 			{
 				persistentUpdate = false;
 				openSubState(new ResetScoreSubState('', curDifficulty, '', curWeek));
@@ -311,7 +285,8 @@ class StoryMenuState extends MusicBeatState
 			// We can't use Dynamic Array .copy() because that crashes HTML5, here's a workaround.
 			var songArray:Array<String> = [];
 			var leWeek:Array<Dynamic> = WeekData.songsNames[curWeek];
-			for (i in 0...leWeek.length) {
+			for (i in 0...leWeek.length)
+			{
 				songArray.push(leWeek[i]);
 			}
 
@@ -321,7 +296,8 @@ class StoryMenuState extends MusicBeatState
 			selectedWeek = true;
 
 			var diffic = CoolUtil.difficultyStuff[curDifficulty][1];
-			if(diffic == null) diffic = '';
+			if (diffic == null)
+				diffic = '';
 
 			PlayState.storyDifficulty = curDifficulty;
 
@@ -342,13 +318,15 @@ class StoryMenuState extends MusicBeatState
 		curDifficulty += change;
 
 		if (curDifficulty < 0)
-			curDifficulty = CoolUtil.difficultyStuff.length-1;
+			curDifficulty = CoolUtil.difficultyStuff.length - 1;
 		if (curDifficulty >= CoolUtil.difficultyStuff.length)
 			curDifficulty = 0;
 
-		sprDifficultyGroup.forEach(function(spr:FlxSprite) {
+		sprDifficultyGroup.forEach(function(spr:FlxSprite)
+		{
 			spr.visible = false;
-			if(curDifficulty == spr.ID) {
+			if (curDifficulty == spr.ID)
+			{
 				spr.visible = true;
 				spr.alpha = 0;
 				spr.y = leftArrow.y - 15;
@@ -374,7 +352,8 @@ class StoryMenuState extends MusicBeatState
 			curWeek = WeekData.songsNames.length - 1;
 
 		var leName:String = '';
-		if(curWeek < weekNames.length) {
+		if (curWeek < weekNames.length)
+		{
 			leName = weekNames[curWeek];
 		}
 
@@ -394,7 +373,8 @@ class StoryMenuState extends MusicBeatState
 		}
 
 		var assetName:String = weekBackground[0];
-		if(curWeek < weekBackground.length) assetName = weekBackground[curWeek];
+		if (curWeek < weekBackground.length)
+			assetName = weekBackground[curWeek];
 
 		bgSprite.loadGraphic(Paths.image('menubackgrounds/menu_' + assetName));
 		updateText();
@@ -403,9 +383,11 @@ class StoryMenuState extends MusicBeatState
 	function updateText()
 	{
 		var weekArray:Array<String> = weekCharacters[0];
-		if(curWeek < weekCharacters.length) weekArray = weekCharacters[curWeek];
+		if (curWeek < weekCharacters.length)
+			weekArray = weekCharacters[curWeek];
 
-		for (i in 0...grpWeekCharacters.length) {
+		for (i in 0...grpWeekCharacters.length)
+		{
 			grpWeekCharacters.members[i].changeCharacter(weekArray[i]);
 		}
 
