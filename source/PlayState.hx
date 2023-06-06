@@ -578,6 +578,17 @@ class PlayState extends MusicBeatState
 					add(bg);
 				}
 
+			case 'most-basic' | 'unbasic' | 'neft' | 'bisic' | 'most-basic-old':
+				defaultCamZoom = 0.9;
+				curStage = 'common_stage';
+				var bg:BGSprite = new BGSprite('common_week/stageback', -600, -200, 0.9, 0.9);
+				add(bg);
+
+				var stageFront:BGSprite = new BGSprite('common_week/stagefront', -650, 600, 0.9, 0.9);
+				stageFront.setGraphicSize(Std.int(stageFront.width * 1.1));
+				stageFront.updateHitbox();
+				add(stageFront);
+
 			default:
 				defaultCamZoom = 0.9;
 				curStage = 'stage';
@@ -655,6 +666,8 @@ class PlayState extends MusicBeatState
 				BF_Y += 220;
 				GF_X += 180;
 				GF_Y += 300;
+			case 'common_stage':
+				DAD_Y += 50;
 		}
 
 		gf = new Character(GF_X, GF_Y, gfVersion);
