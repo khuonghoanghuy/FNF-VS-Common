@@ -190,6 +190,8 @@ class PlayState extends MusicBeatState
 	var wiggleShit:WiggleEffect = new WiggleEffect();
 	var bgGhouls:BGSprite;
 
+	var colum:BGSprite;
+
 	public var songScore:Int = 0;
 	public var songHits:Int = 0;
 	public var songMisses:Int = 0;
@@ -578,6 +580,37 @@ class PlayState extends MusicBeatState
 					add(bg);
 				}
 
+			case 'most-basic' | 'unbasic' | 'neft' | 'bisic' | 'most-basic-old':
+				defaultCamZoom = 0.9;
+				curStage = 'Common_stage';
+				var bg:BGSprite = new BGSprite('common_week/stageback', -600, -200, 0.9, 0.9);
+				add(bg);
+
+				var stageFront:BGSprite = new BGSprite('common_week/stagefront', -650, 600, 0.9, 0.9);
+				stageFront.setGraphicSize(Std.int(stageFront.width * 1.1));
+				stageFront.updateHitbox();
+				add(stageFront);
+
+			case 'colim':
+				defaultCamZoom = 0.9;
+				curStage = 'Common_stage_shd';
+				var bg:BGSprite = new BGSprite('common_week/stageback-2', -600, -200, 0.9, 0.9);
+				add(bg);
+
+				bg.shader = wiggleShit.shader;
+				wiggleShit.effectType = WiggleEffectType.FLAG;
+
+				colum = new BGSprite('common_week/colum', 0, 0, 0.9, 0.9);
+				colum.y = FlxG.height / 2 - colum.height / 2;
+				add(colum);
+
+				colum.velocity.x = 100;
+
+				var stageFront:BGSprite = new BGSprite('common_week/stagefront', -650, 600, 0.9, 0.9);
+				stageFront.setGraphicSize(Std.int(stageFront.width * 1.1));
+				stageFront.updateHitbox();
+				add(stageFront);
+
 			default:
 				defaultCamZoom = 0.9;
 				curStage = 'stage';
@@ -655,6 +688,9 @@ class PlayState extends MusicBeatState
 				BF_Y += 220;
 				GF_X += 180;
 				GF_Y += 300;
+
+			case 'Common_stage' | 'Common_stage_shd':
+				DAD_Y = 100;
 		}
 
 		gf = new Character(GF_X, GF_Y, gfVersion);
@@ -1788,6 +1824,19 @@ class PlayState extends MusicBeatState
 
 	override public function update(elapsed:Float)
 	{
+		if (colum.velocity.x > 0 && colum.x >= FlxG.width - colum.width)
+		{
+			colum.x = FlxG.width - colum.width;
+			colum.velocity.x *= -1;
+		}
+		else if (colum.velocity.x < 0 && colum.x <= 0)
+		{
+			colum.x = 0;
+			colum.velocity.x *= -1;
+		}
+
+		wiggleShit.update(Conductor.crochet / 5000);
+
 		#if !debug
 		perfectMode = false;
 		#end
