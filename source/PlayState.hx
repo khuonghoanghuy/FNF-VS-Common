@@ -190,6 +190,8 @@ class PlayState extends MusicBeatState
 	var wiggleShit:WiggleEffect = new WiggleEffect();
 	var bgGhouls:BGSprite;
 
+	var colum:BGSprite;
+
 	public var songScore:Int = 0;
 	public var songHits:Int = 0;
 	public var songMisses:Int = 0;
@@ -578,11 +580,25 @@ class PlayState extends MusicBeatState
 					add(bg);
 				}
 
-			case 'most-basic' | 'unbasic' | 'neft' | 'bisic' | 'most-basic-old':
+			case 'most-basic' | 'unbasic' | 'neft' | 'most-basic-old':
 				defaultCamZoom = 0.9;
 				curStage = 'common_stage';
 				var bg:BGSprite = new BGSprite('common_week/stageback', -600, -200, 0.9, 0.9);
 				add(bg);
+
+				var stageFront:BGSprite = new BGSprite('common_week/stagefront', -650, 600, 0.9, 0.9);
+				stageFront.setGraphicSize(Std.int(stageFront.width * 1.1));
+				stageFront.updateHitbox();
+				add(stageFront);
+
+			case 'colim':
+				defaultCamZoom = 0.9;
+				curStage = 'common_stage_alt';
+				var bg:BGSprite = new BGSprite('common_week/stageback-2', -600, -200, 0.9, 0.9);
+				add(bg);
+
+				colum = new BGSprite('common_week/colum', 0, 0, 0.9, 0.9);
+				add(colum);
 
 				var stageFront:BGSprite = new BGSprite('common_week/stagefront', -650, 600, 0.9, 0.9);
 				stageFront.setGraphicSize(Std.int(stageFront.width * 1.1));
