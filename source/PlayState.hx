@@ -190,8 +190,6 @@ class PlayState extends MusicBeatState
 	var wiggleShit:WiggleEffect = new WiggleEffect();
 	var bgGhouls:BGSprite;
 
-	var colum:BGSprite;
-
 	public var songScore:Int = 0;
 	public var songHits:Int = 0;
 	public var songMisses:Int = 0;
@@ -579,36 +577,6 @@ class PlayState extends MusicBeatState
 					bg.antialiasing = false;
 					add(bg);
 				}
-
-			case 'most-basic' | 'unbasic' | 'neft' | 'bisic' | 'most-basic-old':
-				defaultCamZoom = 0.9;
-				curStage = 'common_stage';
-
-				var bg:BGSprite = new BGSprite('common_week/stageback', -600, -200, 0.9, 0.9);
-				add(bg);
-
-				var stageFront:BGSprite = new BGSprite('common_week/stagefront', -650, 600, 0.9, 0.9);
-				stageFront.setGraphicSize(Std.int(stageFront.width * 1.1));
-				stageFront.updateHitbox();
-				add(stageFront);
-
-			case 'colim':
-				defaultCamZoom = 0.9;
-				curStage = 'common_stage_shd';
-
-				var bg:BGSprite = new BGSprite('common_week/stageback-2', -600, -200, 0.9, 0.9);
-				add(bg);
-
-				colum = new BGSprite('common_week/colum', 0, 0, 0.9, 0.9);
-				colum.y = FlxG.height / 2 - colum.height / 2;
-				add(colum);
-
-				colum.velocity.x = 100;
-
-				var stageFront:BGSprite = new BGSprite('common_week/stagefront', -650, 600, 0.9, 0.9);
-				stageFront.setGraphicSize(Std.int(stageFront.width * 1.1));
-				stageFront.updateHitbox();
-				add(stageFront);
 
 			default:
 				defaultCamZoom = 0.9;
@@ -1820,17 +1788,6 @@ class PlayState extends MusicBeatState
 
 	override public function update(elapsed:Float)
 	{
-		if (colum.velocity.x > 0 && colum.x >= FlxG.width - colum.width)
-		{
-			colum.x = FlxG.width - colum.width;
-			colum.velocity.x *= -1;
-		}
-		else if (colum.velocity.x < 0 && colum.x <= 0)
-		{
-			colum.x = 0;
-			colum.velocity.x *= -1;
-		}
-
 		#if !debug
 		perfectMode = false;
 		#end
@@ -2439,6 +2396,7 @@ class PlayState extends MusicBeatState
 
 					daNote.active = false;
 					daNote.visible = false;
+
 					daNote.kill();
 					notes.remove(daNote, true);
 					daNote.destroy();
