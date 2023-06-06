@@ -582,7 +582,8 @@ class PlayState extends MusicBeatState
 
 			case 'most-basic' | 'unbasic' | 'neft' | 'bisic' | 'most-basic-old':
 				defaultCamZoom = 0.9;
-				curStage = 'Common_stage';
+				curStage = 'common_stage';
+
 				var bg:BGSprite = new BGSprite('common_week/stageback', -600, -200, 0.9, 0.9);
 				add(bg);
 
@@ -593,7 +594,8 @@ class PlayState extends MusicBeatState
 
 			case 'colim':
 				defaultCamZoom = 0.9;
-				curStage = 'Common_stage_shd';
+				curStage = 'common_stage_shd';
+
 				var bg:BGSprite = new BGSprite('common_week/stageback-2', -600, -200, 0.9, 0.9);
 				add(bg);
 
@@ -689,7 +691,7 @@ class PlayState extends MusicBeatState
 				GF_X += 180;
 				GF_Y += 300;
 
-			case 'Common_stage' | 'Common_stage_shd':
+			case 'common_stage' | 'common_stage_shd':
 				DAD_Y = 100;
 		}
 
