@@ -26,6 +26,7 @@ class ClientPrefs
 	public static var imagesPersist:Bool = false;
 	public static var ghostTapping:Bool = true;
 	public static var hideTime:Bool = false;
+	public static var kwatermark:Bool = false;
 
 	public static var defaultKeys:Array<FlxKey> = [
 		A,
@@ -90,6 +91,7 @@ class ClientPrefs
 		FlxG.save.data.imagesPersist = imagesPersist;
 		FlxG.save.data.ghostTapping = ghostTapping;
 		FlxG.save.data.hideTime = hideTime;
+		FlxG.save.data.kwatermark = kwatermark;
 
 		var achieves:Array<String> = [];
 		FlxG.save.flush();
@@ -183,6 +185,10 @@ class ClientPrefs
 		if (FlxG.save.data.hideTime != null)
 		{
 			hideTime = FlxG.save.data.hideTime;
+		}
+		if (FlxG.save.data.kwatermark != null)
+		{
+			kwatermark = FlxG.save.data.kwatermark;
 		}
 
 		var save:FlxSave = new FlxSave();

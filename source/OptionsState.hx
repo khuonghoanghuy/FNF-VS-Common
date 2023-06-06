@@ -811,8 +811,9 @@ class PreferencesSubstate extends MusicBeatSubstate
 		'Hide HUD',
 		'Hide Song Length',
 		'Flashing Lights',
-		'Camera Zooms'
-		#if !mobile, 'FPS Counter' #end
+		'Camera Zooms',
+		#if !mobile, 'FPS Counter', #end
+		'Kade Watermark'
 	];
 
 	private var grpOptions:FlxTypedGroup<Alphabet>;
@@ -1019,6 +1020,9 @@ class PreferencesSubstate extends MusicBeatSubstate
 
 					case 'Hide Song Length':
 						ClientPrefs.hideTime = !ClientPrefs.hideTime;
+
+					case 'Kade Watermark':
+						ClientPrefs.kwatermark = !ClientPrefs.kwatermark;
 				}
 				FlxG.sound.play(Paths.sound('scrollMenu'));
 				reloadValues();
@@ -1132,6 +1136,8 @@ class PreferencesSubstate extends MusicBeatSubstate
 				daText = "If checked, hides most HUD elements.";
 			case 'Hide Song Length':
 				daText = "If checked, the bar showing how much time is left\nwill be hidden.";
+			case 'Kade Watermark':
+				daText = "(Only when playing a songs)\nIf checked, Game UI, Accuracy System, Score text info\nWill Change into Kade Engine";
 		}
 		descText.text = daText;
 
@@ -1231,6 +1237,8 @@ class PreferencesSubstate extends MusicBeatSubstate
 						daValue = ClientPrefs.imagesPersist;
 					case 'Hide Song Length':
 						daValue = ClientPrefs.hideTime;
+					case 'Kade Watermark':
+						daValue = ClientPrefs.kwatermark;
 				}
 				checkbox.daValue = daValue;
 			}
