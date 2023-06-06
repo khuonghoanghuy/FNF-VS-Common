@@ -3,7 +3,6 @@ package;
 #if desktop
 import Discord.DiscordClient;
 #end
-import Achievements;
 import flixel.FlxCamera;
 import flixel.FlxG;
 import flixel.FlxObject;
@@ -123,31 +122,8 @@ class MainMenuState extends MusicBeatState
 
 		changeItem();
 
-		#if ACHIEVEMENTS_ALLOWED
-		Achievements.loadAchievements();
-		var leDate = Date.now();
-		if (!Achievements.achievementsUnlocked[achievementID][1] && leDate.getDay() == 5 && leDate.getHours() >= 18)
-		{ // It's a friday night. WEEEEEEEEEEEEEEEEEE
-			Achievements.achievementsUnlocked[achievementID][1] = true;
-			giveAchievement();
-			ClientPrefs.saveSettings();
-		}
-		#end
-
 		super.create();
 	}
-
-	#if ACHIEVEMENTS_ALLOWED
-	// Unlocks "Freaky on a Friday Night" achievement
-	var achievementID:Int = 0;
-
-	function giveAchievement()
-	{
-		add(new AchievementObject(achievementID, camAchievement));
-		FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
-		trace('Giving achievement ' + achievementID);
-	}
-	#end
 
 	var selectedSomethin:Bool = false;
 
@@ -199,7 +175,7 @@ class MainMenuState extends MusicBeatState
 						if (curSelected != spr.ID)
 						{
 							FlxTween.tween(spr, {alpha: 0}, 0.4, {
-								ease: FlxEase.quadOut,
+								ease: FlxEase.linear,
 								onComplete: function(twn:FlxTween)
 								{
 									spr.kill();
