@@ -23,12 +23,8 @@ class FreeplayState extends MusicBeatState
 {
 	// Character head icons for your songs
 	static var songsHeads:Array<Dynamic> = [
-		['dad'], // Week 1
-		['spooky', 'spooky', 'monster'], // Week 2
-		['pico'], // Week 3
-		['mom'], // Week 4
-		['parents', 'parents', 'monster'], // Week 5
-		['senpai', 'senpai', 'spirit'] // Week 6
+		['common', 'common-pissed'], // Week 1
+		['common-cooler'] // Week 2
 	];
 
 	var songs:Array<SongMetadata> = [];
@@ -93,6 +89,14 @@ class FreeplayState extends MusicBeatState
 			if (StoryMenuState.weekUnlocked[i])
 			#end
 			addWeek(WeekData.songsNames[i], i, songsHeads[i - 1]);
+		}
+
+		var bonusSonglist = CoolUtil.coolTextFile(Paths.txt('bonusSonglist'));
+		for (i in 0...bonusSonglist.length)
+		{
+			var songArray:Array<String> = bonusSonglist[i].split(":");
+			addSong(songArray[0], 0, songArray[1]);
+			songs[songs.length - 1].color = Std.parseInt(songArray[2]);
 		}
 
 		// LOAD MUSIC
