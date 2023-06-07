@@ -681,7 +681,7 @@ class PlayState extends MusicBeatState
 				BF_Y += 220;
 				GF_X += 180;
 				GF_Y += 300;
-			case 'common_stage':
+			case 'common_stage' | 'common_stage_alt':
 				DAD_Y += 50;
 		}
 
