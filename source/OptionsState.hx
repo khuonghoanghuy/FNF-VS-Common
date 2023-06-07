@@ -792,7 +792,7 @@ class PreferencesSubstate extends MusicBeatSubstate
 {
 	private static var curSelected:Int = 0;
 	static var unselectableOptions:Array<String> = ['GRAPHICS', 'GAMEPLAY'];
-	static var noCheckbox:Array<String> = ['Framerate', 'Note Delay'];
+	static var noCheckbox:Array<String> = ['Framerate', 'Note Delay', 'Spin Splashes'];
 
 	static var options:Array<String> = [
 		'GRAPHICS',
@@ -808,6 +808,7 @@ class PreferencesSubstate extends MusicBeatSubstate
 		'Ghost Tapping',
 		'Note Delay',
 		'Note Splashes',
+		'Spin Splashes',
 		'Hide HUD',
 		'Hide Song Length',
 		'Flashing Lights',
@@ -1060,6 +1061,8 @@ class PreferencesSubstate extends MusicBeatSubstate
 								ClientPrefs.noteOffset = 0;
 							else if (ClientPrefs.noteOffset > 500)
 								ClientPrefs.noteOffset = 500;
+						case 'Spin Splashes':
+							ClientPrefs.splashedSpin += add;
 					}
 				reloadValues();
 
@@ -1132,6 +1135,8 @@ class PreferencesSubstate extends MusicBeatSubstate
 				daText = "If checked, hides most HUD elements.";
 			case 'Hide Song Length':
 				daText = "If checked, the bar showing how much time is left\nwill be hidden.";
+			case 'Spin Splashes':
+				daText = "Spin Splashe\nDefault value is 60.";
 		}
 		descText.text = daText;
 
@@ -1247,6 +1252,8 @@ class PreferencesSubstate extends MusicBeatSubstate
 						daText = '' + ClientPrefs.framerate;
 					case 'Note Delay':
 						daText = ClientPrefs.noteOffset + 'ms';
+					case 'Spin Splashes':
+						daText = '' + ClientPrefs.splashedSpin;
 				}
 				var lastTracker:FlxSprite = text.sprTracker;
 				text.sprTracker = null;
