@@ -808,6 +808,7 @@ class PreferencesSubstate extends MusicBeatSubstate
 		'Ghost Tapping',
 		'Note Delay',
 		'Note Splashes',
+		'Enable Spin Splashes',
 		'Spin Splashes',
 		'Hide HUD',
 		'Hide Song Length',
@@ -1020,6 +1021,9 @@ class PreferencesSubstate extends MusicBeatSubstate
 
 					case 'Hide Song Length':
 						ClientPrefs.hideTime = !ClientPrefs.hideTime;
+
+					case 'Enable Spin Splashes':
+						ClientPrefs.enaSplashedSpin = !ClientPrefs.enaSplashedSpin;
 				}
 				FlxG.sound.play(Paths.sound('scrollMenu'));
 				reloadValues();
@@ -1136,7 +1140,9 @@ class PreferencesSubstate extends MusicBeatSubstate
 			case 'Hide Song Length':
 				daText = "If checked, the bar showing how much time is left\nwill be hidden.";
 			case 'Spin Splashes':
-				daText = "Spin Splashe\nDefault value is 60.";
+				daText = "Spin Splashes\nDefault value is 0.";
+			case 'Enable Spin Splashes':
+				daText = "If checked, splashes will spin angle.";
 		}
 		descText.text = daText;
 
@@ -1236,6 +1242,8 @@ class PreferencesSubstate extends MusicBeatSubstate
 						daValue = ClientPrefs.imagesPersist;
 					case 'Hide Song Length':
 						daValue = ClientPrefs.hideTime;
+					case 'Enable Spin Splashes':
+						daValue = ClientPrefs.enaSplashedSpin;
 				}
 				checkbox.daValue = daValue;
 			}

@@ -86,7 +86,11 @@ class NoteSplash extends FlxSprite
 		if (animation.curAnim.finished)
 			kill();
 
-		angle += elapsed * ClientPrefs.splashedSpin;
+		if (ClientPrefs.enaSplashedSpin)
+		{
+			centerOffsets();
+			angle += elapsed * ClientPrefs.splashedSpin;
+		}
 
 		super.update(elapsed);
 	}

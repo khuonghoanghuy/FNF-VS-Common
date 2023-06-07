@@ -28,6 +28,7 @@ class ClientPrefs
 	public static var hideTime:Bool = false;
 	public static var kwatermark:Bool = false;
 	public static var splashedSpin:Int = 0;
+	public static var enaSplashedSpin:Bool = false;
 
 	public static var defaultKeys:Array<FlxKey> = [
 		A,
@@ -94,6 +95,7 @@ class ClientPrefs
 		FlxG.save.data.hideTime = hideTime;
 		FlxG.save.data.kwatermark = kwatermark;
 		FlxG.save.data.splashedSpin = splashedSpin;
+		FlxG.save.data.enaSplashedSpin = enaSplashedSpin;
 
 		var achieves:Array<String> = [];
 		FlxG.save.flush();
@@ -195,6 +197,10 @@ class ClientPrefs
 		if (FlxG.save.data.splashedSpin != null)
 		{
 			splashedSpin = FlxG.save.data.splashedSpin;
+		}
+		if (FlxG.save.data.enaSplashedSpin != null)
+		{
+			enaSplashedSpin = FlxG.save.data.enaSplashedSpin;
 		}
 
 		var save:FlxSave = new FlxSave();
