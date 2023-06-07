@@ -791,7 +791,7 @@ class ControlsSubstate extends MusicBeatSubstate
 class PreferencesSubstate extends MusicBeatSubstate
 {
 	private static var curSelected:Int = 0;
-	static var unselectableOptions:Array<String> = ['GRAPHICS', 'GAMEPLAY'];
+	static var unselectableOptions:Array<String> = ['GRAPHICS', 'GAMEPLAY', 'NOTE', 'MISC'];
 	static var noCheckbox:Array<String> = ['Framerate', 'Note Delay', 'Spin Splashes'];
 
 	static var options:Array<String> = [
@@ -803,15 +803,17 @@ class PreferencesSubstate extends MusicBeatSubstate
 		'Framerate', // Apparently 120FPS isn't correctly supported on Browser? Probably it has some V-Sync shit enabled by default, idk
 		#end
 		'GAMEPLAY',
+		'Ghost Tapping',
 		'Downscroll',
 		'Middlescroll',
-		'Ghost Tapping',
+		'Hide HUD',
+		'Hide Song Length',
+		'NOTE',
 		'Note Delay',
 		'Note Splashes',
 		'Enable Spin Splashes',
 		'Spin Splashes',
-		'Hide HUD',
-		'Hide Song Length',
+		'MISC',
 		'Flashing Lights',
 		'Camera Zooms'
 		#if !mobile, 'FPS Counter' #end
