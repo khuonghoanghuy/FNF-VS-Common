@@ -14,13 +14,16 @@ class MenuCharacter extends FlxSprite
 		changeCharacter(character);
 	}
 
-	public function changeCharacter(?character:String = 'bf') {
-		if(character == this.character) return;
-	
+	public function changeCharacter(?character:String = 'bf')
+	{
+		if (character == this.character)
+			return;
+
 		this.character = character;
 		antialiasing = ClientPrefs.globalAntialiasing;
 
-		switch(character) {
+		switch (character)
+		{
 			case 'bf':
 				frames = Paths.getSparrowAtlas('menucharacters/Menu_BF');
 				animation.addByPrefix('idle', "M BF Idle", 24);
@@ -53,11 +56,16 @@ class MenuCharacter extends FlxSprite
 			case 'senpai':
 				frames = Paths.getSparrowAtlas('menucharacters/Menu_Senpai');
 				animation.addByPrefix('idle', "M Senpai Idle", 24);
+
+			case 'common':
+				frames = Paths.getSparrowAtlas('menucharacters/Menu_Common');
+				animation.addByPrefix('idle', "common_idle", 24);
 		}
 		animation.play('idle');
 		updateHitbox();
 
-		switch(character) {
+		switch (character)
+		{
 			case 'bf':
 				offset.set(15, -40);
 
@@ -78,6 +86,9 @@ class MenuCharacter extends FlxSprite
 
 			case 'senpai':
 				offset.set(60, -70);
+
+			case 'common':
+				offset.set(-10, 0);
 		}
 	}
 }

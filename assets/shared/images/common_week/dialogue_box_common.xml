@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="dialogue_box_common.png">
+	<!-- Created with Adobe Animate version 18.0.0.107 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="box0000" x="0" y="0" width="509" height="154" frameX="-353" frameY="-76" frameWidth="1215" frameHeight="310"/>
+	<SubTexture name="box0001" x="0" y="0" width="509" height="154" frameX="-353" frameY="-76" frameWidth="1215" frameHeight="310"/>
+	<SubTexture name="box0002" x="509" y="0" width="595" height="157" frameX="-310" frameY="-75" frameWidth="1215" frameHeight="310"/>
+	<SubTexture name="box0003" x="0" y="157" width="1021" height="226" frameX="-97" frameY="-41" frameWidth="1215" frameHeight="310"/>
+	<SubTexture name="box0004" x="0" y="157" width="1021" height="226" frameX="-97" frameY="-41" frameWidth="1215" frameHeight="310"/>
+	<SubTexture name="box0005" x="0" y="383" width="1215" height="310"/>
+	<SubTexture name="box_left0000" x="0" y="383" width="1215" height="310"/>
+	<SubTexture name="box_right0000" x="0" y="693" width="1215" height="310"/>
+</TextureAtlas>
