@@ -815,8 +815,9 @@ class PreferencesSubstate extends MusicBeatSubstate
 		'Spin Splashes',
 		'MISC',
 		'Flashing Lights',
-		'Camera Zooms'
-		#if !mobile, 'FPS Counter' #end
+		'Camera Zooms',
+		#if !mobile 'FPS Counter', #end
+		'Eye Color Change'
 	];
 
 	private var grpOptions:FlxTypedGroup<Alphabet>;
@@ -1026,6 +1027,9 @@ class PreferencesSubstate extends MusicBeatSubstate
 
 					case 'Enable Spin Splashes':
 						ClientPrefs.enaSplashedSpin = !ClientPrefs.enaSplashedSpin;
+
+					case 'Eye Color Change':
+						ClientPrefs.eyecolor = !ClientPrefs.eyecolor;
 				}
 				FlxG.sound.play(Paths.sound('scrollMenu'));
 				reloadValues();
@@ -1145,6 +1149,8 @@ class PreferencesSubstate extends MusicBeatSubstate
 				daText = "Spin Splashes\nDefault value is 0.";
 			case 'Enable Spin Splashes':
 				daText = "If checked, splashes will spin angle.";
+			case 'Eye Color Change':
+				daText = "(ONLY ON COLIM SONG)\nIf unchecked, disable eye color changing of common characters";
 		}
 		descText.text = daText;
 
@@ -1246,6 +1252,8 @@ class PreferencesSubstate extends MusicBeatSubstate
 						daValue = ClientPrefs.hideTime;
 					case 'Enable Spin Splashes':
 						daValue = ClientPrefs.enaSplashedSpin;
+					case 'Eye Color Change':
+						daValue = ClientPrefs.eyecolor;
 				}
 				checkbox.daValue = daValue;
 			}

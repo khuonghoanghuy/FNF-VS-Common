@@ -2308,6 +2308,23 @@ class PlayState extends MusicBeatState
 								altAnim = '-alt';
 								isAlt = true;
 							}
+
+							if (ClientPrefs.eyecolor)
+							{
+								if (SONG.song.toLowerCase() == "colim")
+								{
+									if (curBeat % 4 == 0)
+									{
+										altAnim = '-alt';
+										isAlt = true;
+									}
+									else if (curBeat % 8 == 0)
+									{
+										altAnim = '-alt-2';
+										isAlt = true;
+									}
+								}
+							}
 						}
 
 						var animToPlay:String = '';
