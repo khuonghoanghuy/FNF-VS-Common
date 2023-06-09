@@ -1057,6 +1057,7 @@ class PreferencesSubstate extends MusicBeatSubstate
 		{
 			if (controls.UI_LEFT || controls.UI_RIGHT)
 			{
+				var addFloat_2:Float = controls.UI_LEFT ? -0.01 : 0.01;
 				var addFloat:Float = controls.UI_LEFT ? -0.1 : 0.1;
 				var add:Int = controls.UI_LEFT ? -1 : 1;
 				if (holdTime > 0.5 || controls.UI_LEFT_P || controls.UI_RIGHT_P)
@@ -1098,7 +1099,7 @@ class PreferencesSubstate extends MusicBeatSubstate
 							ClientPrefs.wiggleCurUpdate += add;
 
 						case 'Wave Amplitude':
-							ClientPrefs.wiggleCurWaveAmplitude += addFloat;
+							ClientPrefs.wiggleCurWaveAmplitude += addFloat_2;
 
 						case 'Wave Frequency':
 							ClientPrefs.wiggleWaveFrequency += add;
