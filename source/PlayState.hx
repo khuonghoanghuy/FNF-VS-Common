@@ -1848,7 +1848,7 @@ class PlayState extends MusicBeatState
 					var secondsRemaining:String = '' + secondsTotal % 60;
 					if (secondsRemaining.length < 2)
 						secondsRemaining = '0' + secondsRemaining; // Dunno how to make it display a zero first in Haxe lol
-					timeTxt.text = minutesRemaining + ':' + secondsRemaining;
+					timeTxt.text = minutesRemaining + ':' + secondsRemaining + " - " + SONG.song;
 				}
 			}
 
@@ -2043,7 +2043,8 @@ class PlayState extends MusicBeatState
 										altAnim = '-alt';
 										isAlt = true;
 									}
-									else if (curBeat % 8 == 0)
+
+									if (curBeat % 8 == 0)
 									{
 										altAnim = '-alt-2';
 										isAlt = true;
