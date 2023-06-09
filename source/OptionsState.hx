@@ -791,8 +791,17 @@ class ControlsSubstate extends MusicBeatSubstate
 class PreferencesSubstate extends MusicBeatSubstate
 {
 	private static var curSelected:Int = 0;
-	static var unselectableOptions:Array<String> = ['GRAPHICS', 'GAMEPLAY', 'NOTE', 'MISC'];
-	static var noCheckbox:Array<String> = ['Framerate', 'Note Delay', 'Spin Splashes'];
+	static var unselectableOptions:Array<String> = ['GRAPHICS', 'GAMEPLAY', 'NOTE', 'MISC', 'WIGGLE STUFF'];
+	static var noCheckbox:Array<String> = [
+		'Framerate',
+		'Note Delay',
+		'Spin Splashes',
+		/**For Wiggle Only**/
+		'Update',
+		'Wave Amplitude',
+		'Wave Frequency',
+		'Wave Speed'
+	];
 
 	static var options:Array<String> = [
 		'GRAPHICS',
@@ -817,7 +826,13 @@ class PreferencesSubstate extends MusicBeatSubstate
 		'Flashing Lights',
 		'Camera Zooms',
 		#if !mobile 'FPS Counter', #end
-		'Eye Color Change'
+		'Eye Color Change',
+		'WIGGLE STUFF',
+		'Wiggle Shader',
+		'Update',
+		'Wave Amplitude',
+		'Wave Frequency',
+		'Wave Speed'
 	];
 
 	private var grpOptions:FlxTypedGroup<Alphabet>;
@@ -1030,6 +1045,9 @@ class PreferencesSubstate extends MusicBeatSubstate
 
 					case 'Eye Color Change':
 						ClientPrefs.eyecolor = !ClientPrefs.eyecolor;
+
+					case 'Wiggle Shader':
+						ClientPrefs.wiggleEna = !ClientPrefs.wiggleEna;
 				}
 				FlxG.sound.play(Paths.sound('scrollMenu'));
 				reloadValues();
@@ -1039,6 +1057,7 @@ class PreferencesSubstate extends MusicBeatSubstate
 		{
 			if (controls.UI_LEFT || controls.UI_RIGHT)
 			{
+				var addFloat:Float = controls.UI_LEFT ? -0.1 : 0.1;
 				var add:Int = controls.UI_LEFT ? -1 : 1;
 				if (holdTime > 0.5 || controls.UI_LEFT_P || controls.UI_RIGHT_P)
 					switch (options[curSelected])
@@ -1071,8 +1090,21 @@ class PreferencesSubstate extends MusicBeatSubstate
 								ClientPrefs.noteOffset = 0;
 							else if (ClientPrefs.noteOffset > 500)
 								ClientPrefs.noteOffset = 500;
+
 						case 'Spin Splashes':
 							ClientPrefs.splashedSpin += add;
+
+						case 'Update':
+							ClientPrefs.wiggleCurUpdate += add;
+
+						case 'Wave Amplitude':
+							ClientPrefs.wiggleCurWaveAmplitude += addFloat;
+
+						case 'Wave Frequency':
+							ClientPrefs.wiggleWaveFrequency += add;
+
+						case 'Wave Speed':
+							ClientPrefs.wiggleWaveSpeed += addFloat;
 					}
 				reloadValues();
 
@@ -1150,7 +1182,24 @@ class PreferencesSubstate extends MusicBeatSubstate
 			case 'Enable Spin Splashes':
 				daText = "If checked, splashes will spin angle.";
 			case 'Eye Color Change':
-				daText = "(ONLY ON COLIM SONG)\nIf unchecked, disable eye color changing of common characters";
+				daText = "(ONLY ON COLIM SONG)\nIf unchecked, disable eye color changing of common characters.";
+			/**
+			 * For Wiggle Only
+			 */
+			case 'Wiggle Shader':
+				daText = "(ONLY ON COLIM SONG)\nIf unchecked, disable wiggle shader was running in background.";
+
+			case 'Update':
+				daText = "(ONLY ON COLIM SONG)\nChange the update of wiggle speed.";
+
+			case 'Wave Amplitude':
+				daText = "(ONLY ON COLIM SONG)\nChange the wave amplitude for backgrounds.";
+
+			case 'Wave Frequency':
+				daText = "(ONLY ON COLIM SONG)\nChange the wave frequency for backgrounds.";
+
+			case 'Wave Speed':
+				daText = "(ONLY ON COLIM SONG)\nChange the wave speed for backgrounds.";
 		}
 		descText.text = daText;
 
@@ -1254,6 +1303,8 @@ class PreferencesSubstate extends MusicBeatSubstate
 						daValue = ClientPrefs.enaSplashedSpin;
 					case 'Eye Color Change':
 						daValue = ClientPrefs.eyecolor;
+					case 'Wiggle Shader':
+						daValue = ClientPrefs.wiggleEna;
 				}
 				checkbox.daValue = daValue;
 			}
@@ -1272,6 +1323,14 @@ class PreferencesSubstate extends MusicBeatSubstate
 						daText = ClientPrefs.noteOffset + 'ms';
 					case 'Spin Splashes':
 						daText = '' + ClientPrefs.splashedSpin;
+					case 'Update':
+						daText = '' + ClientPrefs.wiggleCurUpdate;
+					case 'Wave Amplitude':
+						daText = '' + ClientPrefs.wiggleCurWaveAmplitude;
+					case 'Wave Frequency':
+						daText = '' + ClientPrefs.wiggleWaveFrequency;
+					case 'Wave Speed':
+						daText = '' + ClientPrefs.wiggleWaveSpeed;
 				}
 				var lastTracker:FlxSprite = text.sprTracker;
 				text.sprTracker = null;

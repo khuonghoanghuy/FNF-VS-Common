@@ -30,6 +30,12 @@ class ClientPrefs
 	public static var splashedSpin:Int = 0;
 	public static var enaSplashedSpin:Bool = false;
 	public static var eyecolor:Bool = true;
+	// wiggle stuff
+	public static var wiggleEna:Bool = true;
+	public static var wiggleCurUpdate:Int = 4500;
+	public static var wiggleCurWaveAmplitude:Float = 0.01;
+	public static var wiggleWaveFrequency:Int = 24;
+	public static var wiggleWaveSpeed:Float = 0.8;
 
 	public static var defaultKeys:Array<FlxKey> = [
 		A,
@@ -98,6 +104,12 @@ class ClientPrefs
 		FlxG.save.data.splashedSpin = splashedSpin;
 		FlxG.save.data.enaSplashedSpin = enaSplashedSpin;
 		FlxG.save.data.eyecolor = eyecolor;
+		// wiggle stuff
+		FlxG.save.data.wiggleEna = wiggleEna;
+		FlxG.save.data.wiggleCurUpdate = wiggleCurUpdate;
+		FlxG.save.data.wiggleCurWaveAmplitude = wiggleCurWaveAmplitude;
+		FlxG.save.data.wiggleWaveFrequency = wiggleWaveFrequency;
+		FlxG.save.data.wiggleWaveSpeed = wiggleWaveSpeed;
 
 		var achieves:Array<String> = [];
 		FlxG.save.flush();
@@ -207,6 +219,27 @@ class ClientPrefs
 		if (FlxG.save.data.eyecolor != null)
 		{
 			eyecolor = FlxG.save.data.eyecolor;
+		}
+		// wiggle stuff
+		if (FlxG.save.data.wiggleEna != null)
+		{
+			wiggleEna = FlxG.save.data.wiggleEna;
+		}
+		if (FlxG.save.data.wiggleCurUpdate != null)
+		{
+			wiggleCurUpdate = FlxG.save.data.wiggleCurUpdate;
+		}
+		if (FlxG.save.data.wiggleCurWaveAmplitude != null)
+		{
+			wiggleCurWaveAmplitude = FlxG.save.data.wiggleCurWaveAmplitude;
+		}
+		if (FlxG.save.data.wiggleWaveFrequency != null)
+		{
+			wiggleWaveFrequency = FlxG.save.data.wiggleWaveFrequency;
+		}
+		if (FlxG.save.data.wiggleWaveSpeed != null)
+		{
+			wiggleWaveSpeed = FlxG.save.data.wiggleWaveSpeed;
 		}
 
 		var save:FlxSave = new FlxSave();
