@@ -7,3 +7,5 @@ BF and GF was just being do some teleport to some place but they are teleport wr
 Version right now: `v1`
 
 thank you for playing this lol, they are only me (Huy1234TH) do this
+
+![](./art/logo.png)
