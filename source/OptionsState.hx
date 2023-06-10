@@ -30,7 +30,7 @@ using StringTools;
 // TO DO: Redo the menu creation system for not being as dumb
 class OptionsState extends MusicBeatState
 {
-	var options:Array<String> = ['Notes', 'Controls', 'Preferences', 'Reset Data'];
+	var options:Array<String> = ['Notes', 'Controls', 'Preferences'];
 	private var grpOptions:FlxTypedGroup<Alphabet>;
 
 	private static var curSelected:Int = 0;
@@ -108,9 +108,6 @@ class OptionsState extends MusicBeatState
 
 				case 'Preferences':
 					openSubState(new PreferencesSubstate());
-
-				case 'Reset Data':
-					openSubState(new ResetData());
 			}
 		}
 	}
