@@ -1964,7 +1964,7 @@ class PlayState extends MusicBeatState
 				}
 				var center:Float = strumY + Note.swagWidth / 2;
 
-				/*if (ClientPrefs.downScroll)
+				if (ClientPrefs.downScroll)
 				{
 					daNote.y = (strumY + 0.45 * (Conductor.songPosition - daNote.strumTime) * roundedSpeed);
 					if (daNote.isSustainNote)
@@ -2007,13 +2007,7 @@ class PlayState extends MusicBeatState
 
 						daNote.clipRect = swagRect;
 					}
-			}*/
-
-				// own one
-				if (ClientPrefs.downScroll)
-					daNote.y = (strumY + 0.45 * (Conductor.songPosition - daNote.strumTime) * roundedSpeed);
-				else
-					daNote.y = (strumY - 0.45 * (Conductor.songPosition - daNote.strumTime) * roundedSpeed);
+				}
 
 				if (!daNote.mustPress && daNote.wasGoodHit && !daNote.ignoreNote)
 				{
