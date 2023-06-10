@@ -38,7 +38,7 @@ class StoryMenuState extends MusicBeatState
 	var weekNames:Array<String> = ["", "VS Common Guy", "In Gray Stage"];
 
 	// Background asset name, the background files are stored on assets/preload/menubackgrounds/
-	var weekBackground:Array<String> = ['stage', 'stage'];
+	var weekBackground:Array<String> = ['blanks', 'blanks'];
 
 	var scoreText:FlxText;
 
