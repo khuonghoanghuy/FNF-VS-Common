@@ -30,7 +30,7 @@ using StringTools;
 // TO DO: Redo the menu creation system for not being as dumb
 class OptionsState extends MusicBeatState
 {
-	var options:Array<String> = ['Notes', 'Controls', 'Preferences'];
+	var options:Array<String> = ['Notes', 'Controls', 'Preferences', 'Reset Data'];
 	private var grpOptions:FlxTypedGroup<Alphabet>;
 
 	private static var curSelected:Int = 0;
@@ -108,6 +108,9 @@ class OptionsState extends MusicBeatState
 
 				case 'Preferences':
 					openSubState(new PreferencesSubstate());
+
+				case 'Reset Data':
+					openSubState(new ResetData());
 			}
 		}
 	}
@@ -132,6 +135,34 @@ class OptionsState extends MusicBeatState
 			{
 				item.alpha = 1;
 			}
+		}
+	}
+}
+
+class ResetData extends MusicBeatSubstate
+{
+	var text:Alphabet;
+
+	public function new()
+	{
+		super();
+
+		text = new Alphabet(0, 0, "are you sure to reset all data?\n- Press Enter to return\n- Press R to reset");
+		text.scrollFactor.set();
+		text.screenCenter();
+		add(text);
+	}
+
+	override function update(elapsed:Float)
+	{
+		if (controls.RESET)
+		{
+			FlxG.resetGame();
+		}
+
+		if (controls.ACCEPT)
+		{
+			close();
 		}
 	}
 }
