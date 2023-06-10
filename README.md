@@ -8,4 +8,6 @@ Version right now: `v1`
 
 thank you for playing this lol, they are only me (Huy1234TH) do this
 
+download from here: [https://gamebanana.com/mods/449197]
+
 ![](./art/logo.png)
