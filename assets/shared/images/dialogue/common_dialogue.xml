@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="common_dialogue.png">
+	<!-- Created with Adobe Animate version 18.0.0.107 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="bf0000" x="197" y="0" width="530" height="537"/>
+	<SubTexture name="common0000" x="0" y="0" width="197" height="368"/>
+</TextureAtlas>

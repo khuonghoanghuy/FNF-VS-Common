@@ -720,7 +720,7 @@ class PlayState extends MusicBeatState
 					schoolIntro(doof);
 
 				case 'most-basic':
-					dialogueIntro(dialogue);
+					commmonIntro(doof);
 
 				default:
 					startCountdown();
@@ -814,6 +814,36 @@ class PlayState extends MusicBeatState
 		doof.nextDialogueThing = startNextDialogue;
 		doof.cameras = [camHUD];
 		add(doof);
+	}
+
+	function commmonIntro(?dialogueBox:DialogueBox):Void
+	{
+		inCutscene = true;
+		var black:FlxSprite = new FlxSprite(-100, -100).makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK);
+		black.scrollFactor.set();
+		add(black);
+
+		new FlxTimer().start(0.3, function(tmr:FlxTimer)
+		{
+			black.alpha -= 0.15;
+			if (black.alpha > 0)
+			{
+				tmr.reset(0.3);
+			}
+			else
+			{
+				if (dialogueBox != null)
+				{
+					add(dialogueBox);
+				}
+				else
+					startCountdown();
+			}
+
+			remove(black);
+		});
+
+		trace("dialogue loaded");
 	}
 
 	function schoolIntro(?dialogueBox:DialogueBox):Void
