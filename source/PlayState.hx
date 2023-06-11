@@ -3,7 +3,6 @@ package;
 #if desktop
 import Discord.DiscordClient;
 #end
-import DialogueBoxPsych.DialogueFile;
 import Section.SwagSection;
 import Song.SwagSong;
 import WiggleEffect.WiggleEffectType;
@@ -213,8 +212,6 @@ class PlayState extends MusicBeatState
 	public var inCutscene:Bool = false;
 
 	var songLength:Float = 0;
-
-	var dialogueJson:DialogueFile = null;
 
 	public static var displaySongName:String = "";
 
@@ -475,7 +472,6 @@ class PlayState extends MusicBeatState
 		if (OpenFlAssets.exists(file))
 		{
 			dialogue = CoolUtil.coolTextFile(file);
-			dialogueJson = DialogueBoxPsych.parseDialogue(file);
 		}
 		var doof:DialogueBox = new DialogueBox(false, dialogue);
 		// doof.x += 70;
@@ -804,29 +800,6 @@ class PlayState extends MusicBeatState
 	}
 
 	var dialogueCount:Int = 0;
-
-	// You don't have to add a song, just saying. You can just do "dialogueIntro(dialogueJson);" and it should work
-	public function startDialogue(dialogueFile:DialogueFile, ?song:String = null):Void
-	{
-		// TO DO: Make this more flexible, maybe?
-		if (dialogueFile.dialogue.length > 0)
-		{
-			inCutscene = true;
-			CoolUtil.precacheSound('dialogue');
-			CoolUtil.precacheSound('dialogueClose');
-			var doof:DialogueBoxPsych = new DialogueBoxPsych(dialogueFile, song);
-			doof.scrollFactor.set();
-			doof.finishThing = startCountdown;
-			doof.nextDialogueThing = startNextDialogue;
-			doof.cameras = [camHUD];
-			add(doof);
-		}
-		else
-		{
-			FlxG.log.warn('Your dialogue file is badly formatted!');
-			startCountdown();
-		}
-	}
 
 	// You don't have to add a song, just saying. You can just do "dialogueIntro(dialogue);" and it should work
 	public function dialogueIntro(dialogue:Array<String>, ?song:String = null):Void
