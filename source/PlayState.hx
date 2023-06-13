@@ -720,7 +720,7 @@ class PlayState extends MusicBeatState
 					schoolIntro(doof);
 
 				case 'most-basic':
-					commmonIntro(doof);
+					commmonIntro();
 
 				default:
 					startCountdown();
@@ -816,34 +816,95 @@ class PlayState extends MusicBeatState
 		add(doof);
 	}
 
-	function commmonIntro(?dialogueBox:DialogueBox):Void
+	var textFile:String = "";
+	var everytime:Int = 0;
+
+	function commmonIntro():Void
 	{
 		inCutscene = true;
-		var black:FlxSprite = new FlxSprite(-100, -100).makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK);
-		black.scrollFactor.set();
-		add(black);
+		var whiteScreen:FlxSprite = new FlxSprite(-100, -100).makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.WHITE);
+		whiteScreen.scrollFactor.set();
+		add(whiteScreen);
 
-		new FlxTimer().start(0.3, function(tmr:FlxTimer)
+		var diaBox:FlxSprite = new FlxSprite(0, 0);
+		diaBox.frames = Paths.getSparrowAtlas('common_week/dialogue_box_common');
+		diaBox.animation.addByPrefix('normalOpen', 'box', 24, false);
+		diaBox.animation.addByPrefix('normal', 'box_left', 1, false);
+
+		var diaText:FlxText = new FlxText(0, 0, 0, textFile, 16);
+		diaText.scrollFactor.set();
+
+		var icon:FlxSprite = new FlxSprite(0, 0).loadGraphic(Paths.image("dialogueIcon"), true, 150, 150);
+		// common face icon
+		icon.animation.add("common", [0]);
+		icon.animation.add("common-pissed", [1]);
+		icon.animation.add("common-pissed-2", [2]);
+		icon.animation.add("common-angry", [3]);
+		icon.animation.add("common-cooler", [4]);
+		// bf face icon
+		icon.animation.add("bf", [5]);
+
+		add(diaBox);
+		add(icon);
+		add(diaText);
+
+		switch (SONG.song.toLowerCase())
 		{
-			black.alpha -= 0.15;
-			if (black.alpha > 0)
-			{
-				tmr.reset(0.3);
-			}
-			else
-			{
-				if (dialogueBox != null)
+			case "most-basic":
+				if (controls.ACCEPT)
 				{
-					add(dialogueBox);
+					everytime++;
+					switch (everytime)
+					{
+						case 0:
+							icon.animation.play("bf");
+							textFile = "Beep bop";
+							diaText.text = textFile;
+						case 1:
+							icon.animation.play("bf");
+							textFile = "bap bop";
+							diaText.text = textFile;
+						case 2:
+							icon.animation.play("common");
+							textFile = "What are you doing here?";
+							diaText.text = textFile;
+						case 3:
+							icon.animation.play("common");
+							textFile = "And why you bring with this speaker and the mic?";
+							diaText.text = textFile;
+						case 4:
+							icon.animation.play("bf");
+							textFile = "Bap be bop skep bap";
+							diaText.text = textFile;
+						case 5:
+							icon.animation.play("common");
+							textFile = "Ugh...";
+							diaText.text = textFile;
+						case 6:
+							icon.animation.play("common");
+							textFile = "Ok, Since im bored";
+							diaText.text = textFile;
+						case 7:
+							icon.animation.play("common");
+							textFile = "One this round only!";
+							diaText.text = textFile;
+						case 8:
+							icon.animation.play("common");
+							textFile = "After that, you must get out this place!";
+							diaText.text = textFile;
+						case 9:
+							icon.animation.play("bf");
+							textFile = "Bep bop!";
+							diaText.text = textFile;
+						case 10:
+							everytime = 10;
+							remove(diaBox);
+							remove(icon);
+							remove(diaText);
+							startCountdown();
+					}
 				}
-				else
-					startCountdown();
-			}
-
-			remove(black);
-		});
-
-		trace("dialogue loaded");
+		}
 	}
 
 	function schoolIntro(?dialogueBox:DialogueBox):Void

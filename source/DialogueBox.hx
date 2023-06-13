@@ -72,7 +72,7 @@ class DialogueBox extends FlxSpriteGroup
 
 		portraitLeft = new FlxSprite(-20, 40);
 		portraitLeft.frames = Paths.getSparrowAtlas('dialogue/common_dialogue');
-		portraitLeft.animation.addByPrefix('enter', 'common', 24, false);
+		portraitLeft.animation.addByPrefix('enter', 'common', 0, false);
 		portraitLeft.updateHitbox();
 		portraitLeft.scrollFactor.set();
 		add(portraitLeft);
@@ -80,7 +80,7 @@ class DialogueBox extends FlxSpriteGroup
 
 		portraitRight = new FlxSprite(0, 40);
 		portraitRight.frames = Paths.getSparrowAtlas('dialogue/common_dialogue');
-		portraitRight.animation.addByPrefix('enter', 'bf', 24, false);
+		portraitRight.animation.addByPrefix('enter', 'bf', 0, false);
 		portraitRight.updateHitbox();
 		portraitRight.scrollFactor.set();
 		add(portraitRight);
@@ -234,7 +234,7 @@ class DialogueBox extends FlxSpriteGroup
 						portraitRight.animation.play('enter');
 			}*/
 
-			case 'common':
+			case 'dad':
 				portraitRight.visible = false;
 				if (!portraitLeft.visible)
 				{
