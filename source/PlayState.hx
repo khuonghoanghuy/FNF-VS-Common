@@ -233,6 +233,9 @@ class PlayState extends MusicBeatState
 	public var backgroundGroup:FlxTypedGroup<FlxSprite>;
 	public var foregroundGroup:FlxTypedGroup<FlxSprite>;
 
+	// Dia alt
+	var getDia:Bool = false;
+
 	override public function create()
 	{
 		if (FlxG.sound.music != null)
@@ -623,6 +626,41 @@ class PlayState extends MusicBeatState
 		timeBarBG.cameras = [camHUD];
 		timeTxt.cameras = [camHUD];
 		doof.cameras = [camHUD];
+		
+	if (!getDia)
+	{
+		whiteScreen = new FlxSprite(-100, -100).makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.WHITE);
+		whiteScreen.alpha = 0.6;
+		whiteScreen.scrollFactor.set();
+		add(whiteScreen);
+
+		diaBox = new FlxSprite(0, FlxG.height * 0.89 + -100);
+		diaBox.screenCenter(X);
+		diaBox.scale.set(2, 2);
+		diaBox.frames = Paths.getSparrowAtlas('common_week/dialogue_box_common');
+		diaBox.animation.addByPrefix('normalOpen', 'box', 24, false);
+		diaBox.animation.addByPrefix('normal', 'box_left', 1, false);
+		diaBox.animation.play("normalOpen");
+
+		diaText = new FlxText(0, 0, 0, textFile, 32);
+		diaText.color = FlxColor.GREEN;
+		diaText.font = 'Pixel Arial 11 Bold';
+		diaText.scrollFactor.set();
+
+		icon = new FlxSprite(0, 0).loadGraphic(Paths.image("dialogueIcon"), true, 150, 150);
+		// common face icon
+		icon.animation.add("common", [0]);
+		icon.animation.add("common-pissed", [1]);
+		icon.animation.add("common-pissed-2", [2]);
+		icon.animation.add("common-angry", [3]);
+		icon.animation.add("common-cooler", [4]);
+		// bf face icon
+		icon.animation.add("bf", [5]);
+
+		add(diaBox);
+		add(icon);
+		add(diaText);
+	}
 
 		// if (SONG.song == 'South')
 		// FlxG.camera.alpha = 0.7;
@@ -719,13 +757,14 @@ class PlayState extends MusicBeatState
 						FlxG.sound.play(Paths.sound('ANGRY'));
 					schoolIntro(doof);
 
-				case 'most-basic':
-					commmonIntro();
+				case 'most-basic' | 'unbasic' | 'colim':
+					getDia = true;
 
 				default:
 					startCountdown();
 			}
 			seenCutscene = true;
+			// getDia = false;
 		}
 		else
 		{
@@ -819,94 +858,6 @@ class PlayState extends MusicBeatState
 	var textFile:String = "";
 	var everytime:Int = 0;
 
-	function commmonIntro():Void
-	{
-		inCutscene = true;
-		var whiteScreen:FlxSprite = new FlxSprite(-100, -100).makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.WHITE);
-		whiteScreen.scrollFactor.set();
-		add(whiteScreen);
-
-		var diaBox:FlxSprite = new FlxSprite(0, 0);
-		diaBox.frames = Paths.getSparrowAtlas('common_week/dialogue_box_common');
-		diaBox.animation.addByPrefix('normalOpen', 'box', 24, false);
-		diaBox.animation.addByPrefix('normal', 'box_left', 1, false);
-
-		var diaText:FlxText = new FlxText(0, 0, 0, textFile, 16);
-		diaText.scrollFactor.set();
-
-		var icon:FlxSprite = new FlxSprite(0, 0).loadGraphic(Paths.image("dialogueIcon"), true, 150, 150);
-		// common face icon
-		icon.animation.add("common", [0]);
-		icon.animation.add("common-pissed", [1]);
-		icon.animation.add("common-pissed-2", [2]);
-		icon.animation.add("common-angry", [3]);
-		icon.animation.add("common-cooler", [4]);
-		// bf face icon
-		icon.animation.add("bf", [5]);
-
-		add(diaBox);
-		add(icon);
-		add(diaText);
-
-		switch (SONG.song.toLowerCase())
-		{
-			case "most-basic":
-				if (controls.ACCEPT)
-				{
-					everytime++;
-					switch (everytime)
-					{
-						case 0:
-							icon.animation.play("bf");
-							textFile = "Beep bop";
-							diaText.text = textFile;
-						case 1:
-							icon.animation.play("bf");
-							textFile = "bap bop";
-							diaText.text = textFile;
-						case 2:
-							icon.animation.play("common");
-							textFile = "What are you doing here?";
-							diaText.text = textFile;
-						case 3:
-							icon.animation.play("common");
-							textFile = "And why you bring with this speaker and the mic?";
-							diaText.text = textFile;
-						case 4:
-							icon.animation.play("bf");
-							textFile = "Bap be bop skep bap";
-							diaText.text = textFile;
-						case 5:
-							icon.animation.play("common");
-							textFile = "Ugh...";
-							diaText.text = textFile;
-						case 6:
-							icon.animation.play("common");
-							textFile = "Ok, Since im bored";
-							diaText.text = textFile;
-						case 7:
-							icon.animation.play("common");
-							textFile = "One this round only!";
-							diaText.text = textFile;
-						case 8:
-							icon.animation.play("common");
-							textFile = "After that, you must get out this place!";
-							diaText.text = textFile;
-						case 9:
-							icon.animation.play("bf");
-							textFile = "Bep bop!";
-							diaText.text = textFile;
-						case 10:
-							everytime = 10;
-							remove(diaBox);
-							remove(icon);
-							remove(diaText);
-							startCountdown();
-					}
-				}
-		}
-	}
-
 	function schoolIntro(?dialogueBox:DialogueBox):Void
 	{
 		inCutscene = true;
@@ -991,6 +942,14 @@ class PlayState extends MusicBeatState
 				remove(black);
 			}
 		});
+	}
+
+	function goCountDown(enable:Bool)
+	{
+		if (enable)
+			startCountdown();
+
+		return enable;
 	}
 
 	var startTimer:FlxTimer;
@@ -1636,18 +1595,233 @@ class PlayState extends MusicBeatState
 	var canPause:Bool = true;
 	var limoSpeed:Float = 0;
 
+	// dialogue
+	var whiteScreen:FlxSprite;
+	var diaBox:FlxSprite;
+	var diaText:FlxText;
+	var icon:FlxSprite;
+
 	override public function update(elapsed:Float)
 	{
 		#if !debug
 		perfectMode = false;
 		#end
 
-		/*if (FlxG.keys.justPressed.NINE)
-		{
-			iconP1.swapOldIcon();
-	}*/
+		super.update(elapsed); // TEST
 
 		callOnLuas('onUpdate', [elapsed]);
+
+		if (getDia)
+		{
+			inCutscene = true;
+			diaBox.animation.finishCallback = function(name:String)
+			{
+				if (name == "normalOpen")
+				{
+					diaBox.animation.play("normal");
+				}
+			}
+
+			switch (SONG.song.toLowerCase())
+			{
+				case "most-basic":
+					if (controls.ACCEPT)
+					{
+						FlxG.sound.play(Paths.sound("scrollMenu"));
+						everytime += 1;
+					}
+
+					switch (everytime)
+					{
+						case 0:
+							icon.animation.play("bf");
+							textFile = "Beep bop";
+							diaText.text = textFile;
+						case 1:
+							icon.animation.play("bf");
+							textFile = "bap bop";
+							diaText.text = textFile;
+						case 2:
+							icon.animation.play("common");
+							textFile = "What are you doing here?";
+							diaText.text = textFile;
+						case 3:
+							icon.animation.play("common");
+							textFile = "And why you bring with this speaker and the mic?";
+							diaText.text = textFile;
+						case 4:
+							icon.animation.play("bf");
+							textFile = "Bap be bop skep bap";
+							diaText.text = textFile;
+						case 5:
+							icon.animation.play("common");
+							textFile = "Ugh...";
+							diaText.text = textFile;
+						case 6:
+							icon.animation.play("common");
+							textFile = "Ok, Since im bored";
+							diaText.text = textFile;
+						case 7:
+							icon.animation.play("common");
+							textFile = "One this round only!";
+							diaText.text = textFile;
+						case 8:
+							icon.animation.play("common");
+							textFile = "After that, you must get out this place!";
+							diaText.text = textFile;
+						case 9:
+							icon.animation.play("bf");
+							textFile = "Bep bop!";
+							diaText.text = textFile;
+						case 10:
+							inCutscene = false;
+							getDia = false;
+							whiteScreen.alive = false;
+							whiteScreen.exists = false;
+							diaBox.alive = false;
+							diaBox.exists = false;
+							icon.alive = false;
+							icon.exists = false;
+							diaText.alive = false;
+							diaText.exists = false;
+							goCountDown(true);
+					}
+
+				case "unbasic":
+					if (controls.ACCEPT)
+					{
+						FlxG.sound.play(Paths.sound("scrollMenu"));
+						everytime += 1;
+					}
+
+					switch (everytime)
+					{
+						case 0:
+							icon.animation.play("bf");
+							textFile = "Bap bep bop skep bap bap";
+							diaText.text = textFile;
+						case 1:
+							icon.animation.play("common-pissed");
+							textFile = "Ugh...";
+							diaText.text = textFile;
+						case 2:
+							icon.animation.play("common");
+							textFile = "Now...";
+							diaText.text = textFile;
+						case 3:
+							icon.animation.play("common-pissed-2");
+							textFile = "Get out of there!!";
+							diaText.text = textFile;
+						case 4:
+							icon.animation.play("bf");
+							textFile = "Beep";
+							diaText.text = textFile;
+						case 5:
+							icon.animation.play("common-pissed");
+							textFile = "Ugh...\nI Hate this!!";
+							diaText.text = textFile;
+						case 6:
+							icon.animation.play("bf");
+							textFile = "Beep bop bap";
+							diaText.text = textFile;
+						case 7:
+							icon.animation.play("common-pissed-2");
+							textFile = "Ok, this round only...";
+							diaText.text = textFile;
+						case 8:
+							inCutscene = false;
+							getDia = false;
+							whiteScreen.alive = false;
+							whiteScreen.exists = false;
+							diaBox.alive = false;
+							diaBox.exists = false;
+							icon.alive = false;
+							icon.exists = false;
+							diaText.alive = false;
+							diaText.exists = false;
+							goCountDown(true);
+					}
+
+				case "colim":
+					if (controls.ACCEPT)
+					{
+						FlxG.sound.play(Paths.sound("scrollMenu"));
+						everytime += 1;
+					}
+
+					switch (everytime)
+					{
+						case 0:
+							icon.animation.play("bf");
+							textFile = "bap";
+							diaText.text = textFile;
+						case 1:
+							icon.animation.play("common-cooler");
+							textFile = "Welcome!!";
+							diaText.text = textFile;
+						case 2:
+							icon.animation.play("commom-cooler");
+							textFile = "The party is not started yet!\nYou guy come so early!";
+							diaText.text = textFile;
+						case 3:
+							icon.animation.play("bf");
+							textFile = "bap bop?";
+							diaText.text = textFile;
+						case 4:
+							icon.animation.play("bf");
+							textFile = "bap bep bop?";
+							diaText.text = textFile;
+						case 5:
+							icon.animation.play("common-cooler");
+							textFile = "Meet me yesterday?";
+							diaText.text = textFile;
+						case 6:
+							icon.animation.play("bf");
+							textFile = "beep!";
+							diaText.text = textFile;
+						case 7:
+							icon.animation.play("common-cooler");
+							textFile = "Oh...";
+							diaText.text = textFile;
+						case 8:
+							icon.animation.play("common-cooler");
+							textFile = "Well...\nYou guy meet the Common\nThe OG one";
+							diaText.text = textFile;
+						case 9:
+							icon.animation.play("bf");
+							textFile = "bop";
+							diaText.text = textFile;
+						case 10:
+							icon.animation.play("common-cooler");
+							textFile = "Well...";
+							diaText.text = textFile;
+						case 11:
+							icon.animation.play("bf");
+							textFile = "bap skep bop";
+							diaText.text = textFile;
+						case 12:
+							icon.animation.play("common-cooler");
+							textFile = "Rap??";
+							diaText.text = textFile;
+						case 13:
+							icon.animation.play("common-cooler");
+							textFile = "Well...\nWhy not?";
+							diaText.text = textFile;
+						case 14:
+							inCutscene = false;
+							getDia = false;
+							whiteScreen.alive = false;
+							whiteScreen.exists = false;
+							diaBox.alive = false;
+							diaBox.exists = false;
+							icon.alive = false;
+							icon.exists = false;
+							diaText.alive = false;
+							diaText.exists = false;
+							goCountDown(true);
+					}
+			}
+		}
 
 		if (ClientPrefs.wiggleEna)
 			wiggleShit.update(Conductor.crochet / ClientPrefs.wiggleCurUpdate);
@@ -1803,8 +1977,6 @@ class PlayState extends MusicBeatState
 				boyfriendIdleTime = 0;
 			}
 		}
-
-		super.update(elapsed); // TEST
 
 		if (ratingString == '?')
 		{
