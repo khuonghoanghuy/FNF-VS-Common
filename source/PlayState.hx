@@ -19,6 +19,7 @@ import flixel.addons.effects.FlxTrail;
 import flixel.addons.effects.FlxTrailArea;
 import flixel.addons.effects.chainable.FlxEffectSprite;
 import flixel.addons.effects.chainable.FlxWaveEffect;
+import flixel.addons.text.FlxTypeText;
 import flixel.addons.transition.FlxTransitionableState;
 import flixel.graphics.atlas.FlxAtlas;
 import flixel.graphics.frames.FlxAtlasFrames;
@@ -235,6 +236,10 @@ class PlayState extends MusicBeatState
 
 	// Dia alt
 	var getDia:Bool = false;
+	var whiteScreen:FlxSprite;
+	var diaBox:FlxSprite;
+	var diaText:FlxTypeText;
+	var icon:FlxSprite;
 
 	override public function create()
 	{
@@ -736,11 +741,13 @@ class PlayState extends MusicBeatState
 					diaBox.animation.addByPrefix('normal', 'box_left', 1, false);
 					diaBox.animation.play("normalOpen");
 
-					diaText = new FlxText(Std.parseFloat(CoolUtil.coolStringFile(Paths.txt("xText"))),
+					diaText = new FlxTypeText(Std.parseFloat(CoolUtil.coolStringFile(Paths.txt("xText"))),
 						Std.parseFloat(CoolUtil.coolStringFile(Paths.txt("yText"))), 0, textFile, 32);
 					diaText.color = FlxColor.GREEN;
 					diaText.font = 'Pixel Arial 11 Bold';
 					diaText.scrollFactor.set();
+					diaText.delay = 0.05;
+					diaText.start(0.04, true);
 
 					icon = new FlxSprite(Std.parseFloat(CoolUtil.coolStringFile(Paths.txt("xIcon"))),
 						Std.parseFloat(CoolUtil.coolStringFile(Paths.txt("yIcon")))).loadGraphic(Paths.image("dialogueIcon"), true, 150, 150);
@@ -1597,12 +1604,6 @@ class PlayState extends MusicBeatState
 	var canPause:Bool = true;
 	var limoSpeed:Float = 0;
 
-	// dialogue
-	var whiteScreen:FlxSprite;
-	var diaBox:FlxSprite;
-	var diaText:FlxText;
-	var icon:FlxSprite;
-
 	override public function update(elapsed:Float)
 	{
 		#if !debug
@@ -1649,7 +1650,7 @@ class PlayState extends MusicBeatState
 							diaText.text = textFile;
 						case 3:
 							icon.animation.play("common");
-							textFile = "And why you bring with this speaker and the mic?";
+							textFile = "And why you bring with this speaker and\nthe mic?";
 							diaText.text = textFile;
 						case 4:
 							icon.animation.play("bf");
@@ -1787,29 +1788,25 @@ class PlayState extends MusicBeatState
 							diaText.text = textFile;
 						case 8:
 							icon.animation.play("common-cooler");
-							textFile = "Well...\nYou guy meet the Common\nThe OG one";
-							diaText.text = textFile;
-						case 9:
-							icon.animation.play("bf");
-							textFile = "bop";
-							diaText.text = textFile;
-						case 10:
-							icon.animation.play("common-cooler");
 							textFile = "Well...";
 							diaText.text = textFile;
-						case 11:
+						case 9:
+							icon.animation.play("common-cooler");
+							textFile = "I dont know!";
+							diaText.text = textFile;
+						case 10:
 							icon.animation.play("bf");
 							textFile = "bap skep bop";
 							diaText.text = textFile;
-						case 12:
+						case 11:
 							icon.animation.play("common-cooler");
-							textFile = "Rap??";
+							textFile = "Rap?";
 							diaText.text = textFile;
-						case 13:
+						case 12:
 							icon.animation.play("common-cooler");
 							textFile = "Well...\nWhy not?";
 							diaText.text = textFile;
-						case 14:
+						case 13:
 							inCutscene = false;
 							getDia = false;
 							whiteScreen.alive = false;
