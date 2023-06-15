@@ -626,41 +626,6 @@ class PlayState extends MusicBeatState
 		timeBarBG.cameras = [camHUD];
 		timeTxt.cameras = [camHUD];
 		doof.cameras = [camHUD];
-		
-	if (getDia)
-	{
-		whiteScreen = new FlxSprite(-100, -100).makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.WHITE);
-		whiteScreen.alpha = 0.6;
-		whiteScreen.scrollFactor.set();
-		add(whiteScreen);
-
-		diaBox = new FlxSprite(0, FlxG.height * 0.89 + -100);
-		diaBox.screenCenter(X);
-		diaBox.scale.set(2, 2);
-		diaBox.frames = Paths.getSparrowAtlas('common_week/dialogue_box_common');
-		diaBox.animation.addByPrefix('normalOpen', 'box', 24, false);
-		diaBox.animation.addByPrefix('normal', 'box_left', 1, false);
-		diaBox.animation.play("normalOpen");
-
-		diaText = new FlxText(0, 0, 0, textFile, 32);
-		diaText.color = FlxColor.GREEN;
-		diaText.font = 'Pixel Arial 11 Bold';
-		diaText.scrollFactor.set();
-
-		icon = new FlxSprite(0, 0).loadGraphic(Paths.image("dialogueIcon"), true, 150, 150);
-		// common face icon
-		icon.animation.add("common", [0]);
-		icon.animation.add("common-pissed", [1]);
-		icon.animation.add("common-pissed-2", [2]);
-		icon.animation.add("common-angry", [3]);
-		icon.animation.add("common-cooler", [4]);
-		// bf face icon
-		icon.animation.add("bf", [5]);
-
-		add(diaBox);
-		add(icon);
-		add(diaText);
-	}
 
 		// if (SONG.song == 'South')
 		// FlxG.camera.alpha = 0.7;
@@ -758,6 +723,43 @@ class PlayState extends MusicBeatState
 					schoolIntro(doof);
 
 				case 'most-basic' | 'unbasic' | 'colim':
+					whiteScreen = new FlxSprite(-100, -100).makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.WHITE);
+					whiteScreen.alpha = 0.6;
+					whiteScreen.scrollFactor.set();
+					add(whiteScreen);
+
+					diaBox = new FlxSprite(Std.parseInt(CoolUtil.coolStringFile(Paths.txt("xDia"))), FlxG.height * 0.55 + -100);
+					// diaBox.screenCenter(X);
+					diaBox.scale.set(1, 1);
+					diaBox.frames = Paths.getSparrowAtlas('common_week/dialogue_box_common');
+					diaBox.animation.addByPrefix('normalOpen', 'box', 24, false);
+					diaBox.animation.addByPrefix('normal', 'box_left', 1, false);
+					diaBox.animation.play("normalOpen");
+
+					diaText = new FlxText(Std.parseFloat(CoolUtil.coolStringFile(Paths.txt("xText"))),
+						Std.parseFloat(CoolUtil.coolStringFile(Paths.txt("yText"))), 0, textFile, 32);
+					diaText.color = FlxColor.GREEN;
+					diaText.font = 'Pixel Arial 11 Bold';
+					diaText.scrollFactor.set();
+
+					icon = new FlxSprite(Std.parseFloat(CoolUtil.coolStringFile(Paths.txt("xIcon"))),
+						Std.parseFloat(CoolUtil.coolStringFile(Paths.txt("yIcon")))).loadGraphic(Paths.image("dialogueIcon"), true, 150, 150);
+					// common face icon
+					icon.animation.add("common", [0]);
+					icon.animation.add("common-pissed", [1]);
+					icon.animation.add("common-pissed-2", [2]);
+					icon.animation.add("common-angry", [3]);
+					icon.animation.add("common-cooler", [4]);
+					// bf face icon
+					icon.animation.add("bf", [5]);
+
+					add(diaBox);
+					diaBox.cameras = [camHUD];
+					add(icon);
+					icon.cameras = [camHUD];
+					add(diaText);
+					diaText.cameras = [camHUD];
+
 					getDia = true;
 
 				default:
