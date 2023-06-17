@@ -1,8 +1,5 @@
 package;
 
-#if desktop
-import Discord.DiscordClient;
-#end
 import Controls;
 import flash.text.TextField;
 import flash.text.TextField;
@@ -38,10 +35,6 @@ class OptionsState extends MusicBeatState
 
 	override function create()
 	{
-		#if desktop
-		DiscordClient.changePresence("Options Menu", null);
-		#end
-
 		menuBG = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
 		menuBG.color = 0xFFea71fd;
 		menuBG.setGraphicSize(Std.int(menuBG.width * 1.1));

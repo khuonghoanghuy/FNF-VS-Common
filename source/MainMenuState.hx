@@ -1,8 +1,5 @@
 package;
 
-#if desktop
-import Discord.DiscordClient;
-#end
 import flixel.FlxCamera;
 import flixel.FlxG;
 import flixel.FlxObject;
@@ -37,11 +34,6 @@ class MainMenuState extends MusicBeatState
 
 	override function create()
 	{
-		#if desktop
-		// Updating Discord Rich Presence
-		DiscordClient.changePresence("In the Menus", null);
-		#end
-
 		camGame = new FlxCamera();
 		camAchievement = new FlxCamera();
 		camAchievement.bgColor.alpha = 0;

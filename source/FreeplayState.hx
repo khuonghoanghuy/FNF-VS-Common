@@ -1,8 +1,5 @@
 package;
 
-#if desktop
-import Discord.DiscordClient;
-#end
 import flash.text.TextField;
 import flixel.FlxG;
 import flixel.FlxSprite;
@@ -77,11 +74,6 @@ class FreeplayState extends MusicBeatState
 					FlxG.sound.playMusic(Paths.music('freakyMenu'));
 			}
 		 */
-
-		#if desktop
-		// Updating Discord Rich Presence
-		DiscordClient.changePresence("In the Menus", null);
-		#end
 
 		for (i in 1...WeekData.songsNames.length)
 		{
