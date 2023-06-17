@@ -264,29 +264,6 @@ class PlayState extends MusicBeatState
 		var songName:String = SONG.song;
 		displaySongName = StringTools.replace(songName, '-', ' ');
 
-		#if desktop
-		storyDifficultyText = '' + CoolUtil.difficultyStuff[storyDifficulty][0];
-
-		// String that contains the mode defined here so it isn't necessary to call changePresence for each mode
-		if (isStoryMode)
-		{
-			var weekCustomName = 'Week ' + storyWeek;
-			if (WeekData.weekResetName[storyWeek] != null)
-				weekCustomName = '' + WeekData.weekResetName[storyWeek];
-			else if (WeekData.weekNumber[storyWeek] != null)
-				weekCustomName = 'Week ' + WeekData.weekNumber[storyWeek];
-
-			detailsText = "Story Mode: " + weekCustomName;
-		}
-		else
-		{
-			detailsText = "Freeplay";
-		}
-
-		// String for when the game is paused
-		detailsPausedText = "Paused - " + detailsText;
-		#end
-
 		switch (SONG.song.toLowerCase())
 		{
 			case 'most-basic' | 'unbasic' | 'neft' | 'most-basic-old':
