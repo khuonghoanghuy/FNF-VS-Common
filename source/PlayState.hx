@@ -1520,6 +1520,9 @@ class PlayState extends MusicBeatState
 	var canPause:Bool = true;
 	var limoSpeed:Float = 0;
 
+	var mult1:Float;
+	var mult2:Float;
+
 	override public function update(elapsed:Float)
 	{
 		#if !debug
@@ -1954,10 +1957,12 @@ class PlayState extends MusicBeatState
 		// FlxG.watch.addQuick('VOL', vocals.amplitudeLeft);
 		// FlxG.watch.addQuick('VOLRight', vocals.amplitudeRight);
 
-		iconP1.setGraphicSize(Std.int(FlxMath.lerp(150, iconP1.width, CoolUtil.boundTo(1 - (elapsed * 9), 0, 1))));
-		iconP2.setGraphicSize(Std.int(FlxMath.lerp(150, iconP2.width, CoolUtil.boundTo(1 - (elapsed * 9), 0, 1))));
-
+		mult1 = FlxMath.lerp(1, iconP1.scale.x, CoolUtil.boundTo(1 - (elapsed * 9), 0, 1));
+		iconP1.scale.set(mult1, 1);
 		iconP1.updateHitbox();
+
+		mult2 = FlxMath.lerp(1, iconP2.scale.x, CoolUtil.boundTo(1 - (elapsed * 9), 0, 1));
+		iconP2.scale.set(mult2, 1);
 		iconP2.updateHitbox();
 
 		var iconOffset:Int = 26;
@@ -2124,6 +2129,8 @@ class PlayState extends MusicBeatState
 					daNote.active = true;
 				}
 
+				var floatCenter:Float = Std.parseFloat(CoolUtil.coolStringFile(Paths.txt("floatCenter")));
+
 				// i am so fucking sorry for this if condition
 				var strumY:Float = 0;
 				if (daNote.mustPress)
@@ -2134,7 +2141,7 @@ class PlayState extends MusicBeatState
 				{
 					strumY = opponentStrums.members[daNote.noteData].y;
 				}
-				var center:Float = strumY + Note.swagWidth / 2;
+				var center:Float = strumY + Note.swagWidth / floatCenter;
 
 				if (ClientPrefs.downScroll)
 				{
@@ -3735,9 +3742,9 @@ class PlayState extends MusicBeatState
 			FlxG.camera.zoom += 0.015;
 			camHUD.zoom += 0.03;
 		}
-
-		iconP1.setGraphicSize(Std.int(iconP1.width + 30));
-		iconP2.setGraphicSize(Std.int(iconP2.width + 30));
+		
+		iconP1.setGraphicSize(Std.int(iconP1.width + 21));
+		iconP2.setGraphicSize(Std.int(iconP2.width + 21));
 
 		iconP1.updateHitbox();
 		iconP2.updateHitbox();

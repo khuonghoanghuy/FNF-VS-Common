@@ -37,6 +37,8 @@ class ClientPrefs
 	public static var wiggleWaveFrequency:Int = 24;
 	public static var wiggleWaveSpeed:Float = 0.8;
 
+	public static var noteHoldType:Bool = true;
+
 	public static var defaultKeys:Array<FlxKey> = [
 		A,
 		LEFT, // Note Left
