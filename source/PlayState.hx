@@ -1549,6 +1549,14 @@ class PlayState extends MusicBeatState
 	var mult1:Float;
 	var mult2:Float;
 
+	function truncateFloat(number:Float, precision:Int):Float
+	{
+		var num = number;
+		num = num * Math.pow(10, precision);
+		num = Math.round(num / 10, precision);
+		return num;
+	}
+
 	override public function update(elapsed:Float)
 	{
 		#if !debug
@@ -1935,7 +1943,7 @@ class PlayState extends MusicBeatState
 				+ ' | Rating: '
 				+ ratingString
 				+ ' ('
-				+ Math.floor(accuracy * 100)
+				+ truncateFloat(accuracy, 2)
 				+ '%)';
 		}
 		else if (!ClientPrefs.accuracyKade)
