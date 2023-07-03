@@ -1553,7 +1553,7 @@ class PlayState extends MusicBeatState
 	{
 		var num = number;
 		num = num * Math.pow(10, precision);
-		num = Math.round(num / 10, precision);
+		num = Math.round(num) / Math.pow(10, precision);
 		return num;
 	}
 
@@ -3073,20 +3073,28 @@ class PlayState extends MusicBeatState
 		{
 			daRating = 'shit';
 			score = 50;
+			if (ClientPrefs.accuracyKade)
+				totalNotesHit += 0.1;
 		}
 		else if (noteDiff > Conductor.safeZoneOffset * 0.75)
 		{
 			daRating = 'bad';
 			score = 100;
+			if (ClientPrefs.accuracyKade)
+				totalNotesHit += 0.4;
 		}
 		else if (noteDiff > Conductor.safeZoneOffset * 0.25)
 		{
 			daRating = 'good';
 			score = 200;
+			if (ClientPrefs.accuracyKade)
+				totalNotesHit += 0.8;
 		}
 
 		if (daRating == 'sick')
 		{
+			if (ClientPrefs.accuracyKade)
+				totalNotesHit += 1;
 			spawnNoteSplashOnNote(note);
 		}
 
@@ -3478,6 +3486,8 @@ class PlayState extends MusicBeatState
 				popUpScore(note);
 				combo += 1;
 			}
+			else if (ClientPrefs.accuracyKade)
+				totalNotesHit += 1;
 
 			if (note.noteData >= 0)
 				health += 0.023;
