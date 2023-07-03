@@ -1,59 +1,59 @@
 {
 	"animations": [
 		{
-			"loop": false,
 			"offsets": [
 				0,
 				0
 			],
-			"anim": "idle",
+			"loop": false,
 			"fps": 24,
-			"name": "godi_idle0",
-			"indices": []
+			"anim": "idle",
+			"indices": [],
+			"name": "godi_idle0"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				40,
 				-90
 			],
-			"anim": "singDOWN",
+			"loop": false,
 			"fps": 24,
-			"name": "godi_down0",
-			"indices": []
+			"anim": "singDOWN",
+			"indices": [],
+			"name": "godi_down0"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				8,
-				8
+				55
 			],
-			"anim": "singUP",
+			"loop": false,
 			"fps": 24,
-			"name": "godi_up0",
-			"indices": []
+			"anim": "singUP",
+			"indices": [],
+			"name": "godi_up0"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				42,
 				-1
 			],
-			"anim": "singLEFT",
+			"loop": false,
 			"fps": 24,
-			"name": "godi_left0",
-			"indices": []
+			"anim": "singLEFT",
+			"indices": [],
+			"name": "godi_left0"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				19,
 				-1
 			],
-			"anim": "singRIGHT",
+			"loop": false,
 			"fps": 24,
-			"name": "godi_right0",
-			"indices": []
+			"anim": "singRIGHT",
+			"indices": [],
+			"name": "godi_right0"
 		}
 	],
 	"no_antialiasing": false,

@@ -1940,11 +1940,9 @@ class PlayState extends MusicBeatState
 				+ songScore
 				+ ' | Misses: '
 				+ songMisses
-				+ ' | Rating: '
-				+ ratingString
-				+ ' ('
+				+ ' | Accuracy: '
 				+ truncateFloat(accuracy, 2)
-				+ '%)';
+				+ '%';
 		}
 		else if (!ClientPrefs.accuracyKade)
 		{
