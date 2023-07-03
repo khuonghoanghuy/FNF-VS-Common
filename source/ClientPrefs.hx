@@ -37,7 +37,8 @@ class ClientPrefs
 	public static var wiggleWaveFrequency:Int = 24;
 	public static var wiggleWaveSpeed:Float = 0.8;
 
-	public static var noteHoldType:Bool = true;
+	public static var ratingType:Bool = false;
+	public static var accuracyKade:Bool = false;
 
 	public static var defaultKeys:Array<FlxKey> = [
 		A,
@@ -112,6 +113,9 @@ class ClientPrefs
 		FlxG.save.data.wiggleCurWaveAmplitude = wiggleCurWaveAmplitude;
 		FlxG.save.data.wiggleWaveFrequency = wiggleWaveFrequency;
 		FlxG.save.data.wiggleWaveSpeed = wiggleWaveSpeed;
+
+		FlxG.save.data.ratingType = ratingType;
+		FlxG.save.data.accuracyKade = accuracyKade;
 
 		var achieves:Array<String> = [];
 		FlxG.save.flush();
@@ -242,6 +246,14 @@ class ClientPrefs
 		if (FlxG.save.data.wiggleWaveSpeed != null)
 		{
 			wiggleWaveSpeed = FlxG.save.data.wiggleWaveSpeed;
+		}
+		if (FlxG.save.data.ratingType != null)
+		{
+			ratingType = FlxG.save.data.ratingType;
+		}
+		if (FlxG.save.data.accuracyKade != null)
+		{
+			accuracyKade = FlxG.save.data.accuracyKade;
 		}
 
 		var save:FlxSave = new FlxSave();

@@ -838,6 +838,8 @@ class PreferencesSubstate extends MusicBeatSubstate
 		'Middlescroll',
 		'Hide HUD',
 		'Hide Song Length',
+		'Kade Accuracy',
+		'Common Engine Rating Type',
 		'NOTE',
 		'Note Delay',
 		'Note Splashes',
@@ -1069,6 +1071,12 @@ class PreferencesSubstate extends MusicBeatSubstate
 
 					case 'Wiggle Shader':
 						ClientPrefs.wiggleEna = !ClientPrefs.wiggleEna;
+
+					case 'Common Engine Rating Type':
+						ClientPrefs.ratingType = !ClientPrefs.ratingType;
+
+					case 'Kade Accuracy':
+						ClientPrefs.accuracyKade = !ClientPrefs.accuracyKade;
 				}
 				FlxG.sound.play(Paths.sound('scrollMenu'));
 				reloadValues();
@@ -1222,6 +1230,12 @@ class PreferencesSubstate extends MusicBeatSubstate
 
 			case 'Wave Speed':
 				daText = "(ONLY ON COLIM SONG)\nChange the wave speed for backgrounds.";
+
+			case 'Common Engine Rating Type':
+				daText = "Change from normal Psych Engine Rating Type\nInto Common Engine Rating Type";
+
+			case 'Kade Accuracy':
+				daText = "Change from Psych Engine Accuracy into Kade Engine Accuracy";
 		}
 		descText.text = daText;
 
@@ -1327,6 +1341,10 @@ class PreferencesSubstate extends MusicBeatSubstate
 						daValue = ClientPrefs.eyecolor;
 					case 'Wiggle Shader':
 						daValue = ClientPrefs.wiggleEna;
+					case 'Common Engine Rating Type':
+						daValue = ClientPrefs.ratingType;
+					case 'Kade Accuracy':
+						daValue = ClientPrefs.accuracyKade;
 				}
 				checkbox.daValue = daValue;
 			}

@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="godi.png">
+	<!-- Created with Adobe Animate version 18.0.0.107 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="godi_down0000" x="0" y="0" width="344" height="418" frameX="0" frameY="-12" frameWidth="344" frameHeight="430"/>
+	<SubTexture name="godi_down0001" x="0" y="0" width="344" height="418" frameX="0" frameY="-12" frameWidth="344" frameHeight="430"/>
+	<SubTexture name="godi_down0002" x="0" y="0" width="344" height="418" frameX="0" frameY="-12" frameWidth="344" frameHeight="430"/>
+	<SubTexture name="godi_down0003" x="344" y="0" width="314" height="424" frameX="-29" frameY="-6" frameWidth="344" frameHeight="430"/>
+	<SubTexture name="godi_down0004" x="344" y="0" width="314" height="424" frameX="-29" frameY="-6" frameWidth="344" frameHeight="430"/>
+	<SubTexture name="godi_down0005" x="658" y="0" width="299" height="430" frameX="-44" frameY="0" frameWidth="344" frameHeight="430"/>
+	<SubTexture name="godi_down0006" x="658" y="0" width="299" height="430" frameX="-44" frameY="0" frameWidth="344" frameHeight="430"/>
+	<SubTexture name="godi_down0007" x="658" y="0" width="299" height="430" frameX="-44" frameY="0" frameWidth="344" frameHeight="430"/>
+	<SubTexture name="godi_down0008" x="658" y="0" width="299" height="430" frameX="-44" frameY="0" frameWidth="344" frameHeight="430"/>
+	<SubTexture name="godi_idle0000" x="957" y="0" width="220" height="517" frameX="0" frameY="0" frameWidth="233" frameHeight="517"/>
+	<SubTexture name="godi_idle0001" x="957" y="0" width="220" height="517" frameX="0" frameY="0" frameWidth="233" frameHeight="517"/>
+	<SubTexture name="godi_idle0002" x="1177" y="0" width="222" height="499" frameX="-11" frameY="-18" frameWidth="233" frameHeight="517"/>
+	<SubTexture name="godi_idle0003" x="1177" y="0" width="222" height="499" frameX="-11" frameY="-18" frameWidth="233" frameHeight="517"/>
+	<SubTexture name="godi_idle0004" x="1399" y="0" width="220" height="509" frameX="-4" frameY="-8" frameWidth="233" frameHeight="517"/>
+	<SubTexture name="godi_idle0005" x="1619" y="0" width="220" height="512" frameX="-3" frameY="-5" frameWidth="233" frameHeight="517"/>
+	<SubTexture name="godi_idle0006" x="1619" y="0" width="220" height="512" frameX="-3" frameY="-5" frameWidth="233" frameHeight="517"/>
+	<SubTexture name="godi_idle0007" x="957" y="0" width="220" height="517" frameX="0" frameY="0" frameWidth="233" frameHeight="517"/>
+	<SubTexture name="godi_idle0008" x="957" y="0" width="220" height="517" frameX="0" frameY="0" frameWidth="233" frameHeight="517"/>
+	<SubTexture name="godi_idle0009" x="957" y="0" width="220" height="517" frameX="0" frameY="0" frameWidth="233" frameHeight="517"/>
+	<SubTexture name="godi_idle0010" x="957" y="0" width="220" height="517" frameX="0" frameY="0" frameWidth="233" frameHeight="517"/>
+	<SubTexture name="godi_idle0011" x="957" y="0" width="220" height="517" frameX="0" frameY="0" frameWidth="233" frameHeight="517"/>
+	<SubTexture name="godi_idle0012" x="957" y="0" width="220" height="517" frameX="0" frameY="0" frameWidth="233" frameHeight="517"/>
+	<SubTexture name="godi_idle0013" x="957" y="0" width="220" height="517" frameX="0" frameY="0" frameWidth="233" frameHeight="517"/>
+	<SubTexture name="godi_idle0014" x="957" y="0" width="220" height="517" frameX="0" frameY="0" frameWidth="233" frameHeight="517"/>
+	<SubTexture name="godi_left0000" x="0" y="517" width="306" height="517"/>
+	<SubTexture name="godi_left0001" x="306" y="517" width="305" height="517" frameX="-1" frameY="0" frameWidth="306" frameHeight="517"/>
+	<SubTexture name="godi_left0002" x="611" y="517" width="288" height="517" frameX="-5" frameY="0" frameWidth="306" frameHeight="517"/>
+	<SubTexture name="godi_left0003" x="899" y="517" width="286" height="517" frameX="-5" frameY="0" frameWidth="306" frameHeight="517"/>
+	<SubTexture name="godi_left0004" x="1185" y="517" width="239" height="517" frameX="-11" frameY="0" frameWidth="306" frameHeight="517"/>
+	<SubTexture name="godi_left0005" x="1185" y="517" width="239" height="517" frameX="-11" frameY="0" frameWidth="306" frameHeight="517"/>
+	<SubTexture name="godi_left0006" x="1185" y="517" width="239" height="517" frameX="-11" frameY="0" frameWidth="306" frameHeight="517"/>
+	<SubTexture name="godi_left0007" x="1185" y="517" width="239" height="517" frameX="-11" frameY="0" frameWidth="306" frameHeight="517"/>
+	<SubTexture name="godi_left0008" x="1185" y="517" width="239" height="517" frameX="-11" frameY="0" frameWidth="306" frameHeight="517"/>
+	<SubTexture name="godi_left0009" x="1185" y="517" width="239" height="517" frameX="-11" frameY="0" frameWidth="306" frameHeight="517"/>
+	<SubTexture name="godi_right0000" x="1424" y="517" width="296" height="517"/>
+	<SubTexture name="godi_right0001" x="1424" y="517" width="296" height="517"/>
+	<SubTexture name="godi_right0002" x="1424" y="517" width="296" height="517"/>
+	<SubTexture name="godi_right0003" x="1720" y="517" width="286" height="517" frameX="-7" frameY="0" frameWidth="296" frameHeight="517"/>
+	<SubTexture name="godi_right0004" x="1720" y="517" width="286" height="517" frameX="-7" frameY="0" frameWidth="296" frameHeight="517"/>
+	<SubTexture name="godi_right0005" x="0" y="1034" width="261" height="517" frameX="-27" frameY="0" frameWidth="296" frameHeight="517"/>
+	<SubTexture name="godi_right0006" x="0" y="1034" width="261" height="517" frameX="-27" frameY="0" frameWidth="296" frameHeight="517"/>
+	<SubTexture name="godi_up0000" x="261" y="1034" width="220" height="526" frameX="0" frameY="0" frameWidth="220" frameHeight="578"/>
+	<SubTexture name="godi_up0001" x="261" y="1034" width="220" height="526" frameX="0" frameY="0" frameWidth="220" frameHeight="578"/>
+	<SubTexture name="godi_up0002" x="481" y="1034" width="220" height="518" frameX="0" frameY="-31" frameWidth="220" frameHeight="578"/>
+	<SubTexture name="godi_up0003" x="481" y="1034" width="220" height="518" frameX="0" frameY="-31" frameWidth="220" frameHeight="578"/>
+	<SubTexture name="godi_up0004" x="701" y="1034" width="220" height="518" frameX="0" frameY="-60" frameWidth="220" frameHeight="578"/>
+	<SubTexture name="godi_up0005" x="701" y="1034" width="220" height="518" frameX="0" frameY="-60" frameWidth="220" frameHeight="578"/>
+	<SubTexture name="godi_up0006" x="921" y="1034" width="220" height="511" frameX="0" frameY="-62" frameWidth="220" frameHeight="578"/>
+	<SubTexture name="godi_up0007" x="921" y="1034" width="220" height="511" frameX="0" frameY="-62" frameWidth="220" frameHeight="578"/>
+	<SubTexture name="godi_up0008" x="921" y="1034" width="220" height="511" frameX="0" frameY="-62" frameWidth="220" frameHeight="578"/>
+	<SubTexture name="godi_up0009" x="921" y="1034" width="220" height="511" frameX="0" frameY="-62" frameWidth="220" frameHeight="578"/>
+</TextureAtlas>

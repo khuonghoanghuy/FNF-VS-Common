@@ -49,18 +49,7 @@ class PlayState extends MusicBeatState
 	public static var STRUM_X = 42;
 	public static var STRUM_X_MIDDLESCROLL = -278;
 
-	public static var ratingStuff:Array<Dynamic> = [
-		['You Suck!', 0.2], // From 0% to 19%
-		['Shit', 0.4], // From 20% to 39%
-		['Bad', 0.5], // From 40% to 49%
-		['Bruh', 0.6], // From 50% to 59%
-		['Meh', 0.69], // From 60% to 68%
-		['Nice', 0.7], // 69%
-		['Good', 0.8], // From 70% to 79%
-		['Great', 0.9], // From 80% to 89%
-		['Sick!', 1], // From 90% to 99%
-		['Perfect!!', 1] // The value on this one isn't used actually, since Perfect is always "1"
-	];
+	public static var ratingStuff:Array<Dynamic> = [];
 
 	// event variables
 	private var isCameraOnForcedPos:Bool = false;
@@ -187,12 +176,17 @@ class PlayState extends MusicBeatState
 	var wiggleShit:WiggleEffect = new WiggleEffect();
 	var bgGhouls:BGSprite;
 
+	var peopleSprite:BGSprite;
 	var colum:BGSprite;
 
 	public var songScore:Int = 0;
 	public var songHits:Int = 0;
 	public var songMisses:Int = 0;
 	public var scoreTxt:FlxText;
+
+	var accuracy:Float = 0.00;
+	var totalNotesHit:Float = 0.00;
+	var totalPlayed:Int = 0;
 
 	var timeTxt:FlxText;
 	var scoreTxtTween:FlxTween;
@@ -233,6 +227,38 @@ class PlayState extends MusicBeatState
 
 	override public function create()
 	{
+		if (ClientPrefs.ratingType)
+		{
+			ratingStuff = [
+				['Oh God!', 0.1], //IDK
+				['That Suck!', 0.2], // From 0% to 19%
+				['That Shit', 0.4], // From 20% to 39%
+				['So Bad', 0.5], // From 40% to 49%
+				['Bruh', 0.6], // From 50% to 59%
+				['Nah', 0.69], // From 60% to 68%
+				['Okay', 0.7], // 69%
+				['Um, Good', 0.8], // From 70% to 79%
+				['Well, Better now!', 0.9], // From 80% to 89%
+				['Great!', 1], // From 90% to 99%
+				['OMG!!', 1] // The value on this one isn't used actually, since Perfect is always "1"
+			];
+		}
+		else
+		{
+			ratingStuff = [
+				['You Suck!', 0.2], // From 0% to 19%
+				['Shit', 0.4], // From 20% to 39%
+				['Bad', 0.5], // From 40% to 49%
+				['Bruh', 0.6], // From 50% to 59%
+				['Meh', 0.69], // From 60% to 68%
+				['Nice', 0.7], // 69%
+				['Good', 0.8], // From 70% to 79%
+				['Great', 0.9], // From 80% to 89%
+				['Sick!', 1], // From 90% to 99%
+				['Perfect!!', 1] // The value on this one isn't used actually, since Perfect is always "1"
+			];
+		}
+
 		if (FlxG.sound.music != null)
 			FlxG.sound.music.stop();
 
@@ -266,7 +292,7 @@ class PlayState extends MusicBeatState
 
 		switch (SONG.song.toLowerCase())
 		{
-			case 'most-basic' | 'unbasic' | 'neft' | 'most-basic-old':
+			case 'most-basic' | 'unbasic' | 'neft' | 'most-basic-old' | 'bisic':
 				defaultCamZoom = 0.9;
 				curStage = 'common_stage';
 				var bg:BGSprite = new BGSprite('common_week/stageback', -600, -200, 0.9, 0.9);
@@ -1900,7 +1926,19 @@ class PlayState extends MusicBeatState
 		{
 			scoreTxt.text = 'Score: ' + songScore + ' | Misses: ' + songMisses + ' | Rating: ' + ratingString;
 		}
-		else
+		else if (ClientPrefs.accuracyKade)
+		{
+			scoreTxt.text = 'Score: '
+				+ songScore
+				+ ' | Misses: '
+				+ songMisses
+				+ ' | Rating: '
+				+ ratingString
+				+ ' ('
+				+ Math.floor(accuracy * 100)
+				+ '%)';
+		}
+		else if (!ClientPrefs.accuracyKade)
 		{
 			scoreTxt.text = 'Score: '
 				+ songScore
@@ -2032,7 +2070,7 @@ class PlayState extends MusicBeatState
 					var secondsRemaining:String = '' + secondsTotal % 60;
 					if (secondsRemaining.length < 2)
 						secondsRemaining = '0' + secondsRemaining; // Dunno how to make it display a zero first in Haxe lol
-					timeTxt.text = minutesRemaining + ':' + secondsRemaining + " - " + SONG.song;
+					timeTxt.text = minutesRemaining + ':' + secondsRemaining + " - " + displaySongName;
 				}
 			}
 
@@ -2241,6 +2279,15 @@ class PlayState extends MusicBeatState
 								animToPlay = 'singDOWN';
 							case 2:
 								animToPlay = 'singUP';
+								/*if (dad.curCharacter.startsWith('godi')){
+									dad.y += -100;
+									new FlxTimer().start(0.1, function(gooder:FlxTimer){
+										dad.animation.finishCallback = function(name:String)
+										{
+											dad.y += 100;
+										}
+									});
+								}*/
 							case 3:
 								animToPlay = 'singRIGHT';
 						}
@@ -3368,6 +3415,8 @@ class PlayState extends MusicBeatState
 			}
 
 			vocals.volume = 0;
+
+			updateAcc();
 		}
 	}
 
@@ -3503,6 +3552,8 @@ class PlayState extends MusicBeatState
 				}
 			}
 			callOnLuas('goodNoteHit', [leData, leType, isSus]);
+
+			updateAcc();
 		}
 	}
 
@@ -3914,6 +3965,12 @@ class PlayState extends MusicBeatState
 			setOnLuas('rating', ratingPercent);
 			setOnLuas('ratingName', ratingString);
 		}
+	}
+
+	function updateAcc()
+	{
+		totalPlayed += 1;
+		accuracy = totalNotesHit / totalPlayed * 100;
 	}
 
 	var curLight:Int = 0;

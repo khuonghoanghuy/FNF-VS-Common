@@ -1,0 +1,78 @@
+{
+	"animations": [
+		{
+			"loop": false,
+			"offsets": [
+				0,
+				0
+			],
+			"anim": "idle",
+			"fps": 24,
+			"name": "godi_idle0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				40,
+				-90
+			],
+			"anim": "singDOWN",
+			"fps": 24,
+			"name": "godi_down0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				8,
+				8
+			],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "godi_up0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				42,
+				-1
+			],
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "godi_left0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				19,
+				-1
+			],
+			"anim": "singRIGHT",
+			"fps": 24,
+			"name": "godi_right0",
+			"indices": []
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/godi",
+	"position": [
+		90,
+		190
+	],
+	"healthicon": "godi",
+	"flip_x": false,
+	"healthbar_colors": [
+		0,
+		75,
+		255
+	],
+	"camera_position": [
+		0,
+		90
+	],
+	"sing_duration": 4,
+	"scale": 1
+}
