@@ -129,8 +129,8 @@ class OptionsState extends MusicBeatState
 	}
 }
 
-class ResetData extends MusicBeatSubstate
-{
+/*class ResetData extends MusicBeatSubstate
+	{
 	var text:Alphabet;
 
 	public function new()
@@ -155,8 +155,7 @@ class ResetData extends MusicBeatSubstate
 			close();
 		}
 	}
-}
-
+}*/
 class NotesSubstate extends MusicBeatSubstate
 {
 	private static var curSelected:Int = 0;

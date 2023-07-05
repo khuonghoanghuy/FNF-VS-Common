@@ -742,6 +742,7 @@ class PlayState extends MusicBeatState
 					diaText.scrollFactor.set();
 					diaText.delay = 0.05;
 					diaText.start(0.04, true);
+					diaText.waitTime = 2.0;
 
 					icon = new FlxSprite(Std.parseFloat(CoolUtil.coolStringFile(Paths.txt("xIcon"))),
 						Std.parseFloat(CoolUtil.coolStringFile(Paths.txt("yIcon")))).loadGraphic(Paths.image("dialogueIcon"), true, 150, 150);
