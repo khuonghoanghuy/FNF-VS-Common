@@ -230,7 +230,7 @@ class PlayState extends MusicBeatState
 		if (ClientPrefs.ratingType)
 		{
 			ratingStuff = [
-				['Oh God!', 0.1], //IDK
+				['Oh God!', 0.1], // IDK
 				['That Suck!', 0.2], // From 0% to 19%
 				['That Shit', 0.4], // From 20% to 39%
 				['So Bad', 0.5], // From 40% to 49%
@@ -246,6 +246,7 @@ class PlayState extends MusicBeatState
 		else
 		{
 			ratingStuff = [
+				['Suck!', 0.1], // IDK
 				['You Suck!', 0.2], // From 0% to 19%
 				['Shit', 0.4], // From 20% to 39%
 				['Bad', 0.5], // From 40% to 49%
@@ -1546,7 +1547,6 @@ class PlayState extends MusicBeatState
 	var startedCountdown:Bool = false;
 	var canPause:Bool = true;
 	var limoSpeed:Float = 0;
-
 	var mult1:Float;
 	var mult2:Float;
 
@@ -1937,13 +1937,7 @@ class PlayState extends MusicBeatState
 		}
 		else if (ClientPrefs.accuracyKade)
 		{
-			scoreTxt.text = 'Score: '
-				+ songScore
-				+ ' | Misses: '
-				+ songMisses
-				+ ' | Accuracy: '
-				+ truncateFloat(accuracy, 2)
-				+ '%';
+			scoreTxt.text = 'Score: ' + songScore + ' | Misses: ' + songMisses + ' | Accuracy: ' + truncateFloat(accuracy, 2) + '%';
 		}
 		else if (!ClientPrefs.accuracyKade)
 		{
@@ -2286,15 +2280,15 @@ class PlayState extends MusicBeatState
 								animToPlay = 'singDOWN';
 							case 2:
 								animToPlay = 'singUP';
-								/*if (dad.curCharacter.startsWith('godi')){
-									dad.y += -100;
-									new FlxTimer().start(0.1, function(gooder:FlxTimer){
-										dad.animation.finishCallback = function(name:String)
-										{
-											dad.y += 100;
-										}
-									});
-								}*/
+							/*if (dad.curCharacter.startsWith('godi')){
+							dad.y += -100;
+							new FlxTimer().start(0.1, function(gooder:FlxTimer){
+								dad.animation.finishCallback = function(name:String)
+								{
+									dad.y += 100;
+								}
+							});
+						}*/
 							case 3:
 								animToPlay = 'singRIGHT';
 						}
@@ -3810,7 +3804,7 @@ class PlayState extends MusicBeatState
 			FlxG.camera.zoom += 0.015;
 			camHUD.zoom += 0.03;
 		}
-		
+
 		iconP1.setGraphicSize(Std.int(iconP1.width + 21));
 		iconP2.setGraphicSize(Std.int(iconP2.width + 21));
 
