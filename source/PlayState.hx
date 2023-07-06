@@ -230,7 +230,7 @@ class PlayState extends MusicBeatState
 		if (ClientPrefs.ratingType)
 		{
 			ratingStuff = [
-				['Oh God!', 0.1], // IDK
+				['Oh Shit!', 0.1], // IDK
 				['That Suck!', 0.2], // From 0% to 19%
 				['That Shit', 0.4], // From 20% to 39%
 				['So Bad', 0.5], // From 40% to 49%
