@@ -3060,35 +3060,74 @@ class PlayState extends MusicBeatState
 		var rating:FlxSprite = new FlxSprite();
 		var score:Int = 350;
 
-		var daRating:String = "sick";
+		var daRating:String = "";
 
-		if (noteDiff > Conductor.safeZoneOffset * 0.9)
-		{
-			daRating = 'shit';
-			score = 50;
-			if (ClientPrefs.accuracyKade)
-				totalNotesHit += 0.1;
-		}
-		else if (noteDiff > Conductor.safeZoneOffset * 0.75)
-		{
-			daRating = 'bad';
-			score = 100;
-			if (ClientPrefs.accuracyKade)
-				totalNotesHit += 0.4;
-		}
-		else if (noteDiff > Conductor.safeZoneOffset * 0.25)
-		{
-			daRating = 'good';
-			score = 200;
-			if (ClientPrefs.accuracyKade)
-				totalNotesHit += 0.8;
-		}
+		if (ClientPrefs.ratingType)
+			daRating = 'wow';
+		else
+			daRating = 'sick';
 
-		if (daRating == 'sick')
+		if (ClientPrefs.ratingType)
 		{
-			if (ClientPrefs.accuracyKade)
-				totalNotesHit += 1;
-			spawnNoteSplashOnNote(note);
+			if (noteDiff > Conductor.safeZoneOffset * 0.9)
+			{
+				daRating = 'suck';
+				score = 50;
+				if (ClientPrefs.accuracyKade)
+					totalNotesHit += 0.1;
+			}
+			else if (noteDiff > Conductor.safeZoneOffset * 0.75)
+			{
+				daRating = 'bruh';
+				score = 100;
+				if (ClientPrefs.accuracyKade)
+					totalNotesHit += 0.4;
+			}
+			else if (noteDiff > Conductor.safeZoneOffset * 0.25)
+			{
+				daRating = 'cool';
+				score = 200;
+				if (ClientPrefs.accuracyKade)
+					totalNotesHit += 0.8;
+			}
+
+			if (daRating == 'wow')
+			{
+				if (ClientPrefs.accuracyKade)
+					totalNotesHit += 1;
+				spawnNoteSplashOnNote(note);
+			}
+		}
+		else
+		{
+			if (noteDiff > Conductor.safeZoneOffset * 0.9)
+			{
+				daRating = 'shit';
+				score = 50;
+				if (ClientPrefs.accuracyKade)
+					totalNotesHit += 0.1;
+			}
+			else if (noteDiff > Conductor.safeZoneOffset * 0.75)
+			{
+				daRating = 'bad';
+				score = 100;
+				if (ClientPrefs.accuracyKade)
+					totalNotesHit += 0.4;
+			}
+			else if (noteDiff > Conductor.safeZoneOffset * 0.25)
+			{
+				daRating = 'good';
+				score = 200;
+				if (ClientPrefs.accuracyKade)
+					totalNotesHit += 0.8;
+			}
+
+			if (daRating == 'sick')
+			{
+				if (ClientPrefs.accuracyKade)
+					totalNotesHit += 1;
+				spawnNoteSplashOnNote(note);
+			}
 		}
 
 		if (!practiceMode && !cpuControlled)
