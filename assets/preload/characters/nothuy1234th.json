@@ -1,0 +1,78 @@
+{
+	"animations": [
+		{
+			"offsets": [
+				17,
+				-1
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singLEFT",
+			"loop": false,
+			"name": "thatguy_left"
+		},
+		{
+			"offsets": [
+				20,
+				-4
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singDOWN",
+			"loop": false,
+			"name": "thatguy_down"
+		},
+		{
+			"offsets": [
+				-13,
+				8
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singUP",
+			"loop": false,
+			"name": "thatguy_up"
+		},
+		{
+			"offsets": [
+				-13,
+				1
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singRIGHT",
+			"loop": false,
+			"name": "thatguy_right"
+		},
+		{
+			"offsets": [
+				0,
+				1
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "idle",
+			"loop": false,
+			"name": "thatguy_idle"
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/nothuy1234th",
+	"position": [
+		170,
+		390
+	],
+	"healthicon": "dad",
+	"flip_x": false,
+	"healthbar_colors": [
+		175,
+		102,
+		206
+	],
+	"camera_position": [
+		-10,
+		30
+	],
+	"sing_duration": 6.1,
+	"scale": 1.4
+}
